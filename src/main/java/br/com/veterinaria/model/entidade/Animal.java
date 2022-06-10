@@ -9,6 +9,7 @@ public class Animal {
 	private char sexo;
 	private Date data_nasc;
 	private String raca;
+	
 	private String observacoes;
 	
 	

@@ -7,6 +7,11 @@ public class Endereco {
 	private String logradouro;
 	private long numero;
 	private long cep;
+	
+	
+	
+	
+	
 	public long getIdEndereco() {
 		return idEndereco;
 	}

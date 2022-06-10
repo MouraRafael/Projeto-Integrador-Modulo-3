@@ -43,4 +43,6 @@ public class DonoAnimal extends Endereco {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
+	
+	
 }
