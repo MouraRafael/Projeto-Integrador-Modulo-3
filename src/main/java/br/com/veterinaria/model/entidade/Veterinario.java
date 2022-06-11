@@ -1,22 +1,26 @@
 package br.com.veterinaria.model.entidade;
 
-public class DonoAnimal extends Endereco {
-	private long id_dono;
-	private long cpf;
+public class Veterinario extends Endereco {
+	private int idVet;
 	private String nome;
+	private long cpf;
+	private long crmv;
 	private String email;
 	private String telefone;
 	
 	
-	
-	public long getId_dono() {
-		return id_dono;
+	//Getters
+	public int getIdVet() {
+		return idVet;
+	}
+	public String getNome() {
+		return nome;
 	}
 	public long getCpf() {
 		return cpf;
 	}
-	public String getNome() {
-		return nome;
+	public long getCrmv() {
+		return crmv;
 	}
 	public String getEmail() {
 		return email;
@@ -26,16 +30,18 @@ public class DonoAnimal extends Endereco {
 	}
 	
 	
-	
-	
-	public void setId_dono(long id_dono) {
-		this.id_dono = id_dono;
+	//Setters
+	public void setIdVet(int idVet) {
+		this.idVet = idVet;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	public void setCpf(long cpf) {
 		this.cpf = cpf;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setCrmv(long crmv) {
+		this.crmv = crmv;
 	}
 	public void setEmail(String email) {
 		this.email = email;
