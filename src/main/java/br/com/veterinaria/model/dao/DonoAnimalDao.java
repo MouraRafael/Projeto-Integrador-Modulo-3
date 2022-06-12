@@ -153,4 +153,67 @@ public class DonoAnimalDao extends Conexao {
 		
 		return mensagem;
 	}
+	
+	//Metodo de alteracao
+	
+	public String alterar(DonoAnimal d) {
+		String mensagem = "";
+		String sql = "UPDATE dono SET "
+				+ "cpf = ?, "
+				+ "Nome = ?, "
+				+ "email = ?, "
+				+ "telefone = ? "
+				+ "WHERE id_dono = ?";
+		
+		try{
+			PreparedStatement ps = getConexao().prepareStatement(sql);
+			ps.setLong(1, d.getCpf());
+			ps.setString(2, d.getNome());
+			ps.setString(3, d.getEmail());
+			ps.setString(4, d.getTelefone());
+			ps.setLong(5, d.getId_dono());
+
+			int atualiza1 = ps.executeUpdate();
+
+			if(atualiza1>0){
+				sql = "UPDATE endereco SET "
+						+ "cidade = ?, "
+						+ "bairro = ?, "
+						+ "logradouro = ?, "
+						+ "numero = ?, "
+						+ "CEP = ? "
+						+ "WHERE id_end = ?";
+
+				ps = getConexao().prepareStatement(sql);
+				ps.setString(1, d.getCidade());
+				ps.setString(2, d.getBairro());
+				ps.setString(3, d.getLogradouro());
+				ps.setLong(4, d.getCep());
+				ps.setLong(5, d.getCep());
+				ps.setLong(6, d.getIdEndereco());
+
+				int atualiza2 = ps.executeUpdate();
+
+				if(atualiza2>0){
+					mensagem = "sucesso";
+				}
+				
+				
+			}
+
+
+		}catch(SQLException e){
+			e.printStackTrace();
+			mensagem = "falha";
+		}finally{
+			fecharConexao();
+		}
+		
+
+		return mensagem;
+	}
+	
+
+	
+	
 }
