@@ -2,6 +2,7 @@ package br.com.veterinaria.modeo.dao;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import br.com.veterinaria.model.dao.DonoAnimalDao;
@@ -17,5 +18,47 @@ class DonoAnimalDaoTest {
 		dao.listar("");
 		
 	}
+	
+	@Test
+	@DisplayName("Teste de Cadastro")
+	void testeCadastro() {
+		DonoAnimal d = new DonoAnimal();
+		DonoAnimalDao dao = new DonoAnimalDao();
+		
+		d.setCidade("Rio de Janeiro");
+		d.setBairro("Engenho Novo");
+		d.setLogradouro("Rua 2");
+		d.setNumero(15);
+		d.setCep(209875);
+		d.setCpf(1234567880);
+		d.setNome("Paulo");
+		d.setEmail("ass@gmail");
+		d.setTelefone("123456");
+		
+		dao.incluir(d);
+		
+	}
+	
+	@Test
+	@DisplayName("Busca por id")
+	void testeBuscaId() {
+		DonoAnimal d = new DonoAnimal();
+		DonoAnimalDao dao = new DonoAnimalDao();
+		
+		d = dao.buscaPorId(1);
+		System.out.println(d.getCpf());
+		System.out.println(d.getNome());
+		System.out.println(d.getTelefone());
+		System.out.println(d.getEmail());
+		System.out.println(d.getIdEndereco());
+		System.out.println(d.getCidade());
+		System.out.println(d.getBairro());
+		System.out.println(d.getLogradouro());
+		System.out.println(d.getNumero());
+		System.out.println(d.getCep());
+		
+	}
+	
+	
 
 }
