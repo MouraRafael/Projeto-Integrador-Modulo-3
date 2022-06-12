@@ -90,6 +90,18 @@ class DonoAnimalDaoTest {
 		
 	}
 	
+	@Test
+	@DisplayName("exclusao")
+	void testeDeleta() {
+		DonoAnimal d = new DonoAnimal();
+		DonoAnimalDao dao = new DonoAnimalDao();
+		
+		d.setId_dono(4);
+		d.setIdEndereco(3);
+		
+		assertEquals("sucesso",dao.excluir(d));
+	}
+	
 	
 	
 	
