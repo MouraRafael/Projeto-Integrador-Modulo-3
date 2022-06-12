@@ -43,7 +43,7 @@ public class DonoAnimalDao extends Conexao {
 				d.setNumero(rs.getLong("numero"));
 				d.setCep(rs.getLong("CEP"));
 				
-				System.out.println(d.getBairro());
+				
 				lista.add(d);
 			}
 			
@@ -136,7 +136,7 @@ public class DonoAnimalDao extends Conexao {
 			ps.setString(5, dono.getTelefone());
 			
 			if(ps.executeUpdate()>0) {
-				
+				mensagem = "sucesso";
 			}
 			
 			
@@ -144,6 +144,7 @@ public class DonoAnimalDao extends Conexao {
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
+			mensagem = "falhou";
 		}finally {
 			fecharConexao();
 		}
@@ -213,7 +214,39 @@ public class DonoAnimalDao extends Conexao {
 		return mensagem;
 	}
 	
-
+	//Método de exclusão
+	public String excluir(DonoAnimal d) {
+		String mensagem = "";
+		String sql = "DELETE FROM dono Where id_dono = ?";
+		
+		try {
+			PreparedStatement ps = getConexao().prepareStatement(sql);
+			ps.setLong(1, d.getId_dono());
+			
+			int foiOuNao = ps.executeUpdate();
+			
+			if(foiOuNao>0) {
+				sql = "DELETE FROM endereco WHERE id_end = ?";
+				
+				ps = getConexao().prepareStatement(sql);
+				ps.setLong(1, d.getIdEndereco());
+				
+				foiOuNao = ps.executeUpdate();
+				
+				if(foiOuNao>0) {
+					mensagem = "sucesso";
+				}
+				
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+			mensagem = "falha";
+		}finally {
+			fecharConexao();
+		}
+		
+		return mensagem;
+	}
 	
 	
 }
