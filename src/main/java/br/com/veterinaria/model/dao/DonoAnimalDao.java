@@ -60,10 +60,42 @@ public class DonoAnimalDao extends Conexao {
 		
 		return lista;
 	}
-	
-	
-	
-	
+
+	//MÃ©todo de busca por id
+	public DonoAnimal buscaPorId(long num){
+		DonoAnimal d = null;
+
+		String sql = "SELECT cpf, Nome, telefone, email, id_end, cidade, bairro, logradouro, numero, CEP FROM dados_cliente_id WHERE id_dono = ?";
+
+		try{
+			PreparedStatement ps = getConexao().prepareStatement(sql);
+			ps.setLong(1, num);
+
+			ResultSet rs = ps.executeQuery();
+
+			if(rs.next()){
+				d = new DonoAnimal();
+				d.setCpf(rs.getLong("cpf"));
+				d.setNome(rs.getString("Nome"));
+				d.setTelefone(rs.getString("telefone"));
+				d.setEmail(rs.getString("email"));
+				d.setIdEndereco(rs.getLong("id_end"));
+				d.setCidade(rs.getString("cidade"));
+				d.setBairro(rs.getString("bairro"));
+				d.setLogradouro(rs.getString("logradouro"));
+				d.setNumero(rs.getLong("numero"));
+				d.setCep(rs.getLong("CEP"));
+				
+			}
+
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			fecharConexao();
+		}
+
+		return d;
+	}
 	
 	
 	
@@ -84,7 +116,7 @@ public class DonoAnimalDao extends Conexao {
 			ps.executeUpdate();
 			
 				
-			//Fim primeira inserção
+			//Fim primeira inserï¿½ï¿½o
 			
 			//recuperando last_inser_id()
 			ResultSet rs = ps.getGeneratedKeys();
@@ -93,7 +125,7 @@ public class DonoAnimalDao extends Conexao {
 			
 			
 			
-			//Segunda Inserção
+			//Segunda Inserï¿½ï¿½o
 			sql = "INSERT INTO dono(cpf, Nome, email, endereco, telefone) VALUES(?,?,?,?,?)";
 			
 			ps = getConexao().prepareStatement(sql);
