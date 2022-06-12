@@ -3,13 +3,16 @@ package br.com.veterinaria.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import br.com.veterinaria.model.entidade.DonoAnimal;
 
+
+
 public class DonoAnimalDao extends Conexao {
 	
-	
+	//Metodo de listagem
 	public ArrayList<DonoAnimal> listar(String nomeBusca){
 		ArrayList<DonoAnimal> lista = new ArrayList<DonoAnimal>();
 		
@@ -60,13 +63,62 @@ public class DonoAnimalDao extends Conexao {
 	
 	
 	
+	
+	
+	
+	
+	//Metodo de cadastro
 	public String incluir(DonoAnimal dono) {
 		String mensagem ="";
 		
-		String sql = "Insert into ";
+		String sql = "INSERT INTO endereco(cidade,bairro,logradouro, numero, CEP) VALUES(?,?,?,?,?)";
+		try {
+			PreparedStatement ps = getConexao().prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			
+			ps.setString(1, dono.getCidade());
+			ps.setString(2, dono.getBairro());
+			ps.setString(3, dono.getLogradouro());
+			ps.setLong(4, dono.getNumero());
+			ps.setLong(5, dono.getCep());
+			
+			ps.executeUpdate();
+			
+				
+			//Fim primeira inserção
+			
+			//recuperando last_inser_id()
+			ResultSet rs = ps.getGeneratedKeys();
+			rs.next();
+			int idEndereco = rs.getInt(1);
+			
+			
+			
+			//Segunda Inserção
+			sql = "INSERT INTO dono(cpf, Nome, email, endereco, telefone) VALUES(?,?,?,?,?)";
+			
+			ps = getConexao().prepareStatement(sql);
+			ps.setLong(1, dono.getCpf());
+			ps.setString(2, dono.getNome());
+			ps.setString(3, dono.getEmail());
+			ps.setInt(4, idEndereco);
+			ps.setString(5, dono.getTelefone());
+			
+			if(ps.executeUpdate()>0) {
+				
+			}
+			
+			
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			fecharConexao();
+		}
 		
 		
 		
-		return null;
+		
+		return mensagem;
 	}
 }
