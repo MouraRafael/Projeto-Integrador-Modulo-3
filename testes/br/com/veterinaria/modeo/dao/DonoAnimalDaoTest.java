@@ -2,6 +2,7 @@ package br.com.veterinaria.modeo.dao;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +12,7 @@ import br.com.veterinaria.model.entidade.DonoAnimal;
 class DonoAnimalDaoTest {
 
 	@Test
+	@Disabled
 	void testListagem() {
 		DonoAnimal d = new DonoAnimal();
 		DonoAnimalDao dao = new DonoAnimalDao();
@@ -21,6 +23,7 @@ class DonoAnimalDaoTest {
 	
 	@Test
 	@DisplayName("Teste de Cadastro")
+	@Disabled
 	void testeCadastro() {
 		DonoAnimal d = new DonoAnimal();
 		DonoAnimalDao dao = new DonoAnimalDao();
@@ -38,6 +41,34 @@ class DonoAnimalDaoTest {
 		dao.incluir(d);
 		
 	}
+	
+	
+	
+
+	@Test
+	@DisplayName("Teste de alteracao")
+	void testeAltera(){
+		DonoAnimal d = new DonoAnimal();
+		DonoAnimalDao dao = new DonoAnimalDao();
+		
+		d.setId_dono(1);
+		d.setIdEndereco(1);
+		d.setCidade("Rio de Janeiro");
+		d.setBairro("Engenho Novo");
+		d.setLogradouro("Rua Maria Penha");
+		d.setNumero(15);
+		d.setCep(209875090);
+		d.setCpf(1234567880);
+		d.setNome("Paulo");
+		d.setEmail("viola@gmail");
+		d.setTelefone("(21) 2594-5561");
+		
+		
+		
+		
+		assertEquals("falha",dao.alterar(d));
+	}
+	
 	
 	@Test
 	@DisplayName("Busca por id")
@@ -58,6 +89,8 @@ class DonoAnimalDaoTest {
 		System.out.println(d.getCep());
 		
 	}
+	
+	
 	
 	
 
