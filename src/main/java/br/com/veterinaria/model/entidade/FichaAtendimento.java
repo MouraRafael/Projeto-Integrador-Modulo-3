@@ -7,11 +7,16 @@ public class FichaAtendimento {
 	private Animal 		animal;
 	private Date 		data;
 	private Veterinario veterinario;
+	private DonoAnimal	dono;
 	private String 		motivoVisita;
 	private String 		diagnostico;
 	private String 		tratamento;
 	private String 		prescricao;
 	private String 		observacoes;
+	
+	
+	
+	//Getters
 	public long getIdFicha() {
 		return idFicha;
 	}
@@ -23,6 +28,9 @@ public class FichaAtendimento {
 	}
 	public Veterinario getVeterinario() {
 		return veterinario;
+	}
+	public DonoAnimal getDono() {
+		return dono;
 	}
 	public String getMotivoVisita() {
 		return motivoVisita;
@@ -54,6 +62,9 @@ public class FichaAtendimento {
 	public void setVeterinario(Veterinario veterinario) {
 		this.veterinario = veterinario;
 	}
+	public void setDono(DonoAnimal dono) {
+		this.dono = dono;
+	}
 	public void setMotivoVisita(String motivoVisita) {
 		this.motivoVisita = motivoVisita;
 	}
@@ -72,6 +83,5 @@ public class FichaAtendimento {
 	
 	
 	
-	//Getters
 	
 }
