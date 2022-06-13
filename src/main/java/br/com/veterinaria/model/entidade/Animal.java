@@ -6,13 +6,20 @@ public class Animal {
 	private long id_animal;
 	private long id_dono;
 	private String nome;
-	private char sexo;
-	private Date data_nasc;
+	private String sexo;
+	private String nascimento;
+	private String observacoes;
 	
 	private Raca raca;
 	private DonoAnimal dono;
 	
 	
+	public String getNascimento() {
+		return nascimento;
+	}
+	public void setNascimento(String nascimento) {
+		this.nascimento = nascimento;
+	}
 	//Getters
 	public long getId_animal() {
 		return id_animal;
@@ -23,12 +30,10 @@ public class Animal {
 	public String getNome() {
 		return nome;
 	}
-	public char getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
-	public Date getData_nasc() {
-		return data_nasc;
-	}
+	
 	public Raca getRaca() {
 		return raca;
 	}
@@ -36,8 +41,9 @@ public class Animal {
 		return dono;
 	}
 	
-	
-	//Setters
+	public String getObservacoes() {
+		return observacoes;
+	}
 	public void setId_animal(long id_animal) {
 		this.id_animal = id_animal;
 	}
@@ -47,11 +53,12 @@ public class Animal {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public void setSexo(char sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	public void setData_nasc(Date data_nasc) {
-		this.data_nasc = data_nasc;
+	
+	public void setObservacoes(String observacoes) {
+		this.observacoes = observacoes;
 	}
 	public void setRaca(Raca raca) {
 		this.raca = raca;
@@ -59,6 +66,11 @@ public class Animal {
 	public void setDono(DonoAnimal dono) {
 		this.dono = dono;
 	}
+	
+	
+	
+	//Setters
+	
 
 	
 	
