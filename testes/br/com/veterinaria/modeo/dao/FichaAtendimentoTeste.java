@@ -54,5 +54,25 @@ class FichaAtendimentoTeste {
 					);
 		}
 	}
+	
+	@Test
+	void buscaId() {
+		FichaAtendimento f = new FichaAtendimento();
+		FichaAtendimentoDao dao = new FichaAtendimentoDao();
+		
+		
+		f = dao.buscaPorId(1);
+		System.out.println("\n");
+		System.out.print(" - Ficha: "+f.getIdFicha()+"\n - Data Visita: "+
+		f.getData()+"\n - Motivo: "+
+		f.getMotivoVisita()+"\n - Diagnostico: "+
+		f.getDiagnostico()+"\n - Tratamento: "+
+		f.getTratamento()+"\n - Prescricao: "+
+		f.getPrescricao()+"\n - Observacoes: "+
+		f.getObservacoes()+"\n - Veterinario:"+
+		f.getVeterinario().getNome()+"\n - Animal: "+
+		f.getAnimal().getNome());
+		System.out.println("\n");
+	}
 
 }

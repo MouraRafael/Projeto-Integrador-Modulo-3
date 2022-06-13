@@ -114,4 +114,58 @@ public class FichaAtendimentoDao extends Conexao {
 
 		return lista;
 	}
+
+
+	public FichaAtendimento buscaPorId(long num){
+		FichaAtendimento f = null;
+		Veterinario v = null;
+		Animal a = null;
+
+		String sql = "SELECT distinct "
+				+ "id_ficha, "
+				+ "data_visita, "
+				+ "motivo_visita,  "
+				+ "diagnostico, "
+				+ "tratamento, "
+				+ "prescricao, "
+				+ "observacoes_ficha, "
+				+ "Veterinario, "
+				+ "nome_animal "
+				+ "FROM tudo_ficha "
+				+ "WHERE id_ficha = ?;";
+
+		try {
+			PreparedStatement ps = getConexao().prepareStatement(sql);
+			ps.setLong(1, num);
+
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()){
+				f = new FichaAtendimento();
+				v = new Veterinario();
+				a = new Animal();
+
+				f.setIdFicha(rs.getLong(1));
+				f.setData(rs.getDate(2));
+				f.setMotivoVisita(rs.getString(3));
+				f.setDiagnostico(rs.getString(4));
+				f.setTratamento(rs.getString(5));
+				f.setPrescricao(rs.getString(6));
+				f.setObservacoes(rs.getString(7));
+				v.setNome(rs.getString(8));
+				f.setVeterinario(v);
+
+				a.setNome(rs.getString(9));
+				f.setAnimal(a);
+			}
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
+
+		return f;
+	}
 }
