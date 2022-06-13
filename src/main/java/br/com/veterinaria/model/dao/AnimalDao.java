@@ -107,6 +107,43 @@ public class AnimalDao extends Conexao {
 		return lista;
 	}
 	
+	//buscaporID
+	public Animal buscaPorId(Long num){
+		Animal a = null;
+		Raca r = null;
+
+		String sql = "SELECT id_animal, id_dono, nome, sexo, data_nasc, raca, observacoes FROM animal WHERE id_animal = ?";
+
+		try {
+			PreparedStatement ps = getConexao().prepareStatement(sql);
+			ps.setLong(1, num);
+
+			ResultSet rs = ps.executeQuery();
+
+			if(rs.next()){
+				a = new Animal();
+				r = new Raca();
+				a.setId_animal(rs.getLong("id_animal"));
+				a.setId_dono(rs.getLong("id_dono"));
+				a.setNome(rs.getString("nome"));
+				a.setSexo(rs.getString("sexo"));
+				a.setNascimento(rs.getString("data_nasc"));
+				
+				r.setIdRaca(rs.getLong("raca"));
+				a.setRaca(r);
+
+				a.setObservacoes(rs.getString("observacoes"));
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally{
+			fecharConexao();
+		}
+
+		return a;
+	}
 	
 	
 	
