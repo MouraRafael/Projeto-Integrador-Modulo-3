@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class FichaAtendimento {
 	private long 		idFicha;
-	private long 		idAnimal;
+	private Animal 		animal;
 	private Date 		data;
 	private Veterinario veterinario;
 	private String 		motivoVisita;
@@ -12,15 +12,11 @@ public class FichaAtendimento {
 	private String 		tratamento;
 	private String 		prescricao;
 	private String 		observacoes;
-	
-	
-	
-	//Getters
 	public long getIdFicha() {
 		return idFicha;
 	}
-	public long getIdAnimal() {
-		return idAnimal;
+	public Animal getAnimal() {
+		return animal;
 	}
 	public Date getData() {
 		return data;
@@ -45,13 +41,12 @@ public class FichaAtendimento {
 	}
 	
 	
-	
 	//Setters
 	public void setIdFicha(long idFicha) {
 		this.idFicha = idFicha;
 	}
-	public void setIdAnimal(long idAnimal) {
-		this.idAnimal = idAnimal;
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
 	}
 	public void setData(Date data) {
 		this.data = data;
@@ -74,4 +69,9 @@ public class FichaAtendimento {
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
 	}
+	
+	
+	
+	//Getters
+	
 }
