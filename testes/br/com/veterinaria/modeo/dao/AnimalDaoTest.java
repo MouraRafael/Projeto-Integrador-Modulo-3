@@ -1,5 +1,7 @@
 package br.com.veterinaria.modeo.dao;
 
+import static org.junit.Assert.assertEquals;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -44,7 +46,7 @@ class AnimalDaoTest {
 	}
 
 	@Test
-	@Disabled
+	//@Disabled
 	@DisplayName("Teste lista")
 	void test() {
 		Animal a = new Animal();
@@ -79,7 +81,7 @@ class AnimalDaoTest {
 		Animal a = new Animal();
 		AnimalDao dao = new AnimalDao();
 		
-		a = dao.buscaPorId((long) 2);
+		a = dao.buscaPorId((long) 3);
 		System.out.println(a.getId_animal());
 		System.out.println(a.getId_dono());
 		System.out.println(a.getNome());
@@ -89,6 +91,31 @@ class AnimalDaoTest {
 		System.out.println(a.getObservacoes());
 		
 		
+	}
+	
+	@Test
+	//@Disabled
+	@DisplayName("atualiza")
+	void testeAtualiza() {
+		
+		Animal a = new Animal();
+		AnimalDao dao = new AnimalDao();
+		Raca r = new Raca();
+		DonoAnimal d = new DonoAnimal();
+		
+		a.setId_animal(3);
+		a.setId_dono(1);
+		a.setNome("Pochiena");
+		a.setSexo("M");
+
+				
+		a.setObservacoes("nada a declarar.");
+		
+		r.setIdRaca(31);
+		a.setNascimento("2022-10-15");
+		a.setRaca(r);
+		
+		assertEquals("sucesso",dao.alterar(a));
 	}
 	
 	
