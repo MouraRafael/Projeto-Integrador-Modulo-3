@@ -94,7 +94,7 @@ class AnimalDaoTest {
 	}
 	
 	@Test
-	//@Disabled
+	@Disabled
 	@DisplayName("atualiza")
 	void testeAtualiza() {
 		
@@ -116,6 +116,13 @@ class AnimalDaoTest {
 		a.setRaca(r);
 		
 		assertEquals("sucesso",dao.alterar(a));
+	}
+	
+	@Test
+	@DisplayName("Teste Deleta")
+	void testeDeleta(){
+		AnimalDao dao = new AnimalDao();
+		assertEquals("sucesso",dao.excluir(4));
 	}
 	
 	
