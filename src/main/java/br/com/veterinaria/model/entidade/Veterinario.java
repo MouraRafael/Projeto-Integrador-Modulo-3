@@ -3,7 +3,7 @@ package br.com.veterinaria.model.entidade;
 public class Veterinario extends Endereco {
 	private int idVet;
 	private String nome;
-	private long cpf;
+	private String cpf;
 	private long crmv;
 	private String email;
 	private String telefone;
@@ -16,7 +16,7 @@ public class Veterinario extends Endereco {
 	public String getNome() {
 		return nome;
 	}
-	public long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 	public long getCrmv() {
@@ -37,7 +37,7 @@ public class Veterinario extends Endereco {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public void setCpf(long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 	public void setCrmv(long crmv) {

@@ -3,6 +3,8 @@ package br.com.veterinaria.model.entidade;
 public class Raca {
 	private long idRaca;
 	private long idEspecie;
+	private String nomeRaca;
+	private String nomeEspecie;
 	
 	
 	public long getIdRaca() {
@@ -29,7 +31,6 @@ public class Raca {
 	public void setNomeEspecie(String nomeEspecie) {
 		this.nomeEspecie = nomeEspecie;
 	}
-	private String nomeRaca;
-	private String nomeEspecie;
+	
 	
 }
