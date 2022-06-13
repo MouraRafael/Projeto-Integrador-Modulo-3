@@ -144,6 +144,45 @@ public class AnimalDao extends Conexao {
 
 		return a;
 	}
+
+
+	public String alterar(Animal a){
+		String mensagem = "";
+
+		String sql = "UPDATE animal SET "
+				+ "nome = ?, "
+				+ "sexo = ?, "
+				+ "data_nasc = ?, "
+				+ "raca = ?, "
+				+ "observacoes = ? "
+				+ "WHERE id_animal = ?";
+
+		try {
+			PreparedStatement ps = getConexao().prepareStatement(sql);
+
+			ps.setString(1, a.getNome());
+			ps.setString(2, a.getSexo());
+			ps.setString(3, a.getNascimento());
+			ps.setLong(4, a.getRaca().getIdRaca());
+			ps.setString(5, a.getObservacoes());
+			ps.setLong(6, a.getId_animal());
+
+			int atualiza = ps.executeUpdate();
+
+			if(atualiza>0){
+				mensagem = "sucesso";
+			}
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			mensagem = "falha";
+		}finally{
+			fecharConexao();
+		}
+
+		return mensagem;
+	}
 	
 	
 	
