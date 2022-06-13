@@ -108,7 +108,7 @@ public class AnimalDao extends Conexao {
 	}
 	
 	//buscaporID
-	public Animal buscaPorId(Long num){
+	public Animal buscaPorId(long num){
 		Animal a = null;
 		Raca r = null;
 
@@ -180,6 +180,32 @@ public class AnimalDao extends Conexao {
 		}finally{
 			fecharConexao();
 		}
+
+		return mensagem;
+	}
+	
+	
+	//Excluir
+	public String excluir(long i){
+		String mensagem = "";
+
+		String sql = "DELETE FROM animal WHERE id_animal = ?";
+
+		try {
+			PreparedStatement ps = getConexao().prepareStatement(sql);
+			ps.setLong(1, i);
+
+			int deleta = ps.executeUpdate();
+			
+			if(deleta>0) {
+				mensagem = "sucesso";
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			mensagem = "falha";
+		}
+
 
 		return mensagem;
 	}
