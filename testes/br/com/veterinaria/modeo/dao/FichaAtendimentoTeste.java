@@ -15,7 +15,7 @@ import br.com.veterinaria.model.entidade.Veterinario;
 class FichaAtendimentoTeste {
 
 	@Test
-	@Disabled
+	
 	void cadastro() {
 		FichaAtendimentoDao dao = new FichaAtendimentoDao(); 
 		FichaAtendimento f = new FichaAtendimento();
@@ -61,7 +61,7 @@ class FichaAtendimentoTeste {
 		FichaAtendimentoDao dao = new FichaAtendimentoDao();
 		
 		
-		f = dao.buscaPorId(1);
+		f = dao.buscaPorId(2);
 		System.out.println("\n");
 		System.out.print(" - Ficha: "+f.getIdFicha()+"\n - Data Visita: "+
 		f.getData()+"\n - Motivo: "+
@@ -74,5 +74,21 @@ class FichaAtendimentoTeste {
 		f.getAnimal().getNome());
 		System.out.println("\n");
 	}
+	
+	@Test
+	void atualiza() {
+		FichaAtendimento f = new FichaAtendimento();
+		FichaAtendimentoDao dao = new FichaAtendimentoDao();
+		
+		f.setDiagnostico("Pata Quebrada -");
+		f.setTratamento("Tipoia -");
+		f.setPrescricao("Dipirona -");
+		f.setObservacoes("Manter Repouso -");
+		f.setIdFicha(2);
+		
+		dao.alterar(f);
+	}
+	
+	
 
 }

@@ -163,9 +163,40 @@ public class FichaAtendimentoDao extends Conexao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-
-
 		return f;
+	}
+
+
+	public String alterar(FichaAtendimento f){
+		String mensagem = "";
+		
+		String stmt = "UPDATE ficha_medica SET "
+				+ "diagnostico = ?, "
+				+ "tratamento = ?, "
+				+ "prescricao = ?, "
+				+ "observacoes = ? "
+				+ "WHERE id_ficha = ?";
+
+		try {
+			PreparedStatement ps = getConexao().prepareStatement(stmt);
+			ps.setString(1, f.getDiagnostico());
+			ps.setString(2, f.getTratamento());
+			ps.setString(3, f.getPrescricao());
+			ps.setString(4, f.getObservacoes());
+			ps.setLong(5, f.getIdFicha());
+
+			int atualiza = ps.executeUpdate();
+
+			if(atualiza>0){
+				mensagem = "sucesso";
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			mensagem = "falha";
+		}
+
+		return mensagem;
+
 	}
 }
