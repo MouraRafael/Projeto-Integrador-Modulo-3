@@ -16,38 +16,9 @@ import br.com.veterinaria.model.entidade.DonoAnimal;
 import br.com.veterinaria.model.entidade.Raca;
 
 class AnimalDaoTest {
-
-	@Test
-	//@Disabled
-	@DisplayName("Teste lista")
-	void test() {
-		Animal a = new Animal();
-		AnimalDao dao = new AnimalDao();
-		ArrayList<Animal> lista = new ArrayList<Animal>();
-		
-		lista = dao.listar("");
-		
-		for(Animal animal : lista) {
-			System.out.println(
-		animal.getId_animal()+" - "+
-		animal.getNome()+" - "+
-		animal.getSexo()+" - "+
-		animal.getNascimento()+" - "+
-		animal.getObservacoes()+" - "+
-		animal.getRaca().getIdRaca()+" - "+
-		animal.getRaca().getNomeRaca()+ " - "+
-		animal.getRaca().getNomeEspecie()+" - "+
-		animal.getRaca().getIdEspecie()+" - "+
-		animal.getDono().getNome()+" - "+
-		animal.getId_dono()+" - "+
-		animal.getDono().getId_dono()
-		);
-		}
-		
-		
-	}
 	
 	@Test
+	@Disabled
 	@DisplayName("Teste Cadastro")
 	void testeincluir() {
 		Animal a = new Animal();
@@ -71,5 +42,55 @@ class AnimalDaoTest {
 		dao.incluir(a);
 		
 	}
+
+	@Test
+	@Disabled
+	@DisplayName("Teste lista")
+	void test() {
+		Animal a = new Animal();
+		AnimalDao dao = new AnimalDao();
+		ArrayList<Animal> lista = new ArrayList<Animal>();
+		
+		lista = dao.listar("");
+		
+		for(Animal animal : lista) {
+			System.out.println(
+			animal.getId_animal()+" - "+
+			animal.getNome()+" - "+
+			animal.getSexo()+" - "+
+			animal.getNascimento()+" - "+
+			animal.getObservacoes()+" - "+
+			animal.getRaca().getIdRaca()+" - "+
+			animal.getRaca().getNomeRaca()+ " - "+
+			animal.getRaca().getNomeEspecie()+" - "+
+			animal.getRaca().getIdEspecie()+" - "+
+			animal.getDono().getNome()+" - "+
+			animal.getId_dono()+" - "+
+			animal.getDono().getId_dono()
+			);
+		}
+		
+		
+	}
+	
+	@Test
+	@DisplayName("Busca por id")
+	void testeBuscaId() {
+		Animal a = new Animal();
+		AnimalDao dao = new AnimalDao();
+		
+		a = dao.buscaPorId((long) 2);
+		System.out.println(a.getId_animal());
+		System.out.println(a.getId_dono());
+		System.out.println(a.getNome());
+		System.out.println(a.getSexo());
+		System.out.println(a.getNascimento());
+		System.out.println(a.getRaca().getIdRaca());
+		System.out.println(a.getObservacoes());
+		
+		
+	}
+	
+	
 
 }
