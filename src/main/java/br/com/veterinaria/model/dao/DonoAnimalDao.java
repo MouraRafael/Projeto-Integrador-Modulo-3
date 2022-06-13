@@ -61,7 +61,7 @@ public class DonoAnimalDao extends Conexao {
 		return lista;
 	}
 
-	//Método de busca por id
+	//Metodo de busca por id
 	public DonoAnimal buscaPorId(long num){
 		DonoAnimal d = null;
 
