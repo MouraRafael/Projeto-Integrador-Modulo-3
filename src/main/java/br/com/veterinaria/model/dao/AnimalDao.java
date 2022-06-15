@@ -37,6 +37,8 @@ public class AnimalDao extends Conexao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			mensagem = "falhou";
+		}finally{
+			fecharConexao();
 		}
 
 
@@ -195,6 +197,7 @@ public class AnimalDao extends Conexao {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
 			ps.setLong(1, i);
 
+			
 			int deleta = ps.executeUpdate();
 			
 			if(deleta>0) {
@@ -204,6 +207,8 @@ public class AnimalDao extends Conexao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			mensagem = "falha";
+		}finally {
+			fecharConexao();
 		}
 
 
