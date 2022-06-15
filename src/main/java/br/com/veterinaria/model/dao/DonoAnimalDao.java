@@ -32,7 +32,7 @@ public class DonoAnimalDao extends Conexao {
 			while(rs.next()) {
 				d = new DonoAnimal();
 				d.setId_dono(rs.getLong("id_dono"));
-				d.setCpf(rs.getLong("cpf"));
+				d.setCpf(rs.getString("cpf"));
 				d.setNome(rs.getString("Nome"));
 				d.setTelefone(rs.getString("telefone"));
 				d.setEmail(rs.getString("email"));
@@ -75,7 +75,7 @@ public class DonoAnimalDao extends Conexao {
 
 			if(rs.next()){
 				d = new DonoAnimal();
-				d.setCpf(rs.getLong("cpf"));
+				d.setCpf(rs.getString("cpf"));
 				d.setNome(rs.getString("Nome"));
 				d.setTelefone(rs.getString("telefone"));
 				d.setEmail(rs.getString("email"));
@@ -129,7 +129,7 @@ public class DonoAnimalDao extends Conexao {
 			sql = "INSERT INTO dono(cpf, Nome, email, endereco, telefone) VALUES(?,?,?,?,?)";
 			
 			ps = getConexao().prepareStatement(sql);
-			ps.setLong(1, dono.getCpf());
+			ps.setString(1, dono.getCpf());
 			ps.setString(2, dono.getNome());
 			ps.setString(3, dono.getEmail());
 			ps.setInt(4, idEndereco);
@@ -168,7 +168,7 @@ public class DonoAnimalDao extends Conexao {
 		
 		try{
 			PreparedStatement ps = getConexao().prepareStatement(sql);
-			ps.setLong(1, d.getCpf());
+			ps.setString(1, d.getCpf());
 			ps.setString(2, d.getNome());
 			ps.setString(3, d.getEmail());
 			ps.setString(4, d.getTelefone());
