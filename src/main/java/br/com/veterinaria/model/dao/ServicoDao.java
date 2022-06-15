@@ -74,8 +74,34 @@ public class ServicoDao extends Conexao {
 			fecharConexao();
 		}
 
-		System.out.println(lista.size());
 		return lista;
+	}
+
+
+	public String excluir (Servico s){
+		String mensagem = "";
+		String sql = "DELETE FROM fichaM_Servicos WHERE id_ficha_medica = ? AND id_servico = ?";
+
+		try {
+			PreparedStatement ps = getConexao().prepareStatement(sql);
+			ps.setLong(1, s.getIdFicha());
+			ps.setLong(2, s.getIdServico());
+
+			int deleta = ps.executeUpdate();
+			
+			if(deleta>0) {
+				mensagem = "sucesso";
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			mensagem = "falha";
+		}finally{
+			fecharConexao();
+		}
+
+
+		return mensagem;
 	}
 
 
