@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Painel de Controle | Atendente</title>
         <link rel="stylesheet" href="../assets/css/root.css">
-        <link rel="stylesheet" href="../assets/css/attendantpanel.css">
+        <link rel="stylesheet" href="../assets/css/container.css">
         <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon/favicon-16x16.png">
@@ -63,58 +63,57 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     
     <!-- FIM DO NAVBAR -->
-        <main class="main-container">
-            <div class="main-content">
-                <div class="container__title">
-                    <h1 id="title">Editar Animal</h1>
-                </div>
-                <div class="main-table">
-                    <div class="form-animal">
-                        <form action="action.atualizar.animal.php" method="post">
-                            <div class="form-container">
-                                <div class="box">
-                                    <div class="input__nome ipt">
-                                        <label for="nome" class="label">Nome Animal:</label>
-                                        <input type="text" id="nome" name="nomeAnimal" class="input"
-                                            placeholder="Nome do Animal" value="">
-                                    </div>
-                                    <div class="input__data ipt">
-                                        <label for="dateanimal" class="label">Data de Nascimento:</label>
-                                        <input type="date" id="dateanimal" name="dataNascimento" class="input" value="">
-                                    </div>
-                                </div>
-                                <div class="box">
 
-                                    <div class="ipt">
-                                        <label for="sexo" class="label">Sexo:</label>
-                                        <div class="box-check">
-                                            <div>
-                                                <input type="radio" id="macho" name="sexo" value="M" >
-                                                <label class="m">Macho</label>
 
-                                                <input type="radio" id="femea" name="sexo" value="F" >
-                                                <label class="f">F�mea</label>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="ipt">
-                                        <label for="select" class="label">Ra�a:</label>
-                                        <select name="select" id="select" autofocus>
-                                            <option disabled>Selecione a Ra�a</option>
-                                            
-                                                <option value=""> Escolha a Ra�a </option>
-                                            
-                                        </select>
-                                    </div>
-                                </div>
-                                <button name="idanimal" value="" type="submit" class="cad-animal btn">Editar Animal</button>
-                            </div>
-                        </form>
+    <br>
+    <div class="container80">
+     <div class="conform">
+        <h2 id="title">Editar Animal</h2>
+        <form class="row g-3" action="action.atualizar.animal.php" method="post">
+            <div class="col-md-6">
+                <label for="nome_animal" class="label">Nome Animal:</label>
+                <input type="text" class="form-control" id="nome" name="nomeAnimal" placeholder="Nome do Animal" value="<?= $_SESSION['idanimal']->Nome ?>">
+            </div>
+            <div class="col-md-6">
+                <label for="data_nasc" class="label">Data de Nascimento:</label>
+                <input type="date" class="form-control" id="dateanimal" name="dataNascimento" value="<?= $_SESSION['idanimal']->Data_Nascimento?>">
+            </div>
+            <div class="col-md-6">
+                <label for="sexo_animal" class="label">Sexo:</label>
+                <div class="box-check">
+                    <div> 
+                        <input type="radio" id="macho" name="sexo" value="M" > <!-- <?= ($_SESSION['idanimal']->Sexo == "M")? 'checked' : '' ?> -->
+                            <label class="m">Macho</label>
+    
+                        <input type="radio" id="femea" name="sexo" value="F"> <!--  <?= ($_SESSION['idanimal']->Sexo == "F")? 'checked' : '' ?> -->
+                            <label class="f">Fêmea</label>
                     </div>
                 </div>
             </div>
-        </main>
+            <div class="col-md-6">
+                <label for="select" class="label">Raça:</label>
+                <select name="select" id="select" autofocus>
+                    <option disabled>Selecione a Raça</option>
+                        <!--<?php foreach($_SESSION['listaracas'] as $racas): ?>-->
+                            <!-- <option value="<?= $racas->id_raca ?>" </option> <?= ($racas->id_raca == $_SESSION['idanimal']->id_raca) ? 'selected' : '' ?>><?= $racas->nome_raca ?> </option> -->
+                        <!-- <?php endforeach; ?> -->
+                </select>
+            </div>
+    
+    
+            <div class="col-12">
+                <label for="observacoes" class="label">Observações</label>
+                <input type="text" class="form-control" id="observacoes" name="observacoes" value="<?= $_SESSION['observacoes']->observacoes ?>">
+            
+    
+            </div>
+    
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary" name="idanimal" value="<?= $_SESSION['idanimal']->id ?>">Editar Animal</button>
+            </div>
+        </form>
+      </div>
+    </div>
 
 </body>
 

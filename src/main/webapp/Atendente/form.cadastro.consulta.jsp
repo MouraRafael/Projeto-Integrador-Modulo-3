@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Painel de Controle | Atendente</title>
         <link rel="stylesheet" href="../assets/css/root.css">
-        <link rel="stylesheet" href="../assets/css/attendantpanel.css">
+        <link rel="stylesheet" href="../assets/css/container.css">
         <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon/favicon-16x16.png">
@@ -64,52 +64,34 @@
     <!-- FIM DO NAVBAR -->
 
 
-        <main class="main-container">
-            <div class="main-content">
-                <div class="container__title">
-                    <h1 id="title">Cadastrar Consulta</h1>
-                </div>
-                <div class="main-table">
-                    <div class="form-consulta">
-                        <form action="./action.cadastrar.consulta.php" method="post">
-                            <div class="form-content">
-
-                                <div class="form-container">
-                                    <div class="box">
-                                    <div class="input__animal ipt">
-                                        <label for="animal" class="label">Animal:</label>
-                                        <input type="text" class="input" id="animal" value="" disabled>
-                                        
-                                    </div>
-                                    
-                                </div>
-                                <div class="box">
-                                    <div class="ipt">
-                                        <label for="select" class="label">Veterinario:</label>
-                                        <select name="idVet" id="select" autofocus>
-                                            <option selected disabled>Escolha um Veterin�rio</option>
-                                           
-                                            <option value=""></option>
-
-                                            
-                                        </select>
-                                    </div>
-                                </div>
-                               
-                                
-                            </div>
-                            <div class="container__textarea" >
-                                <label for="" class="label">Motivo:</label>
-                                <textarea name="motivo" id="" cols="30" rows="10" class="textarea" maxlength="300" class=""></textarea>
-                                <button type="submit" name="idAnimal" value="" class="cad-consult btn">Cadastrar Consulta</button> 
-                            </div>
-                        </div>
-                        </form>
-                    </div>
-                </div>
+    <br>
+<div class="container80">
+    <div class="conform">
+        <h2 id="title">Cadastrar Consulta</h2>
+        <form class="row g-3" action="./action.cadastrar.consulta.php" method="post">
+            <div class="col-md-6">
+                <label for="animal" class="label">Animal:</label>
+                <input type="text" class="input" id="animal" value="<?= $_GET['nomeAnimal']?>" disabled>
             </div>
-        </main>
+            <div class="col-md-6">
+                <label for="select" class="label">Veterinario:</label>
+                <select name="idVet" id="select" autofocus>
+                    <option selected disabled>Escolha um Veterinário</option>
+                    <?php foreach($_SESSION['listamedicos'] as $vet): ?>
+                        <option value="<?= $vet->id_vet?>"><?= $vet->nome_vet?></option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+
+            <div class="col-md-12">
+                <label for="" class="label">Motivo:</label>
+                <textarea name="motivo" id="" cols="30" rows="10" class="textarea" maxlength="300" class=""></textarea>
+                <button type="submit" class="btn btn-primary" name="idAnimal" value="<?= $_GET['idAnimal']?>" class="cad-consult btn">Cadastrar Consulta</button> 
+            </div>
+        </form>
     </div>
+</div>
+
 </body>
 
 </html>
