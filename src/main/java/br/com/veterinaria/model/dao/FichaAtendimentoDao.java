@@ -162,6 +162,8 @@ public class FichaAtendimentoDao extends Conexao {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			fecharConexao();
 		}
 		return f;
 	}
@@ -194,6 +196,8 @@ public class FichaAtendimentoDao extends Conexao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			mensagem = "falha";
+		}finally{
+			fecharConexao();
 		}
 
 		return mensagem;

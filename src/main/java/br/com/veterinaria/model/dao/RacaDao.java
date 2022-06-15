@@ -32,6 +32,8 @@ public class RacaDao extends Conexao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally{
+			fecharConexao();
 		}
 
 		return lista;
