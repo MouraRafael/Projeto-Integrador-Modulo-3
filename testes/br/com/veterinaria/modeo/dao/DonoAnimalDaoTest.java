@@ -12,7 +12,7 @@ import br.com.veterinaria.model.entidade.DonoAnimal;
 class DonoAnimalDaoTest {
 
 	@Test
-	@Disabled
+	//@Disabled
 	void testListagem() {
 		DonoAnimal d = new DonoAnimal();
 		DonoAnimalDao dao = new DonoAnimalDao();
@@ -23,7 +23,7 @@ class DonoAnimalDaoTest {
 	
 	@Test
 	@DisplayName("Teste de Cadastro")
-	@Disabled
+	//@Disabled
 	void testeCadastro() {
 		DonoAnimal d = new DonoAnimal();
 		DonoAnimalDao dao = new DonoAnimalDao();
@@ -33,7 +33,7 @@ class DonoAnimalDaoTest {
 		d.setLogradouro("Rua 2");
 		d.setNumero(15);
 		d.setCep(209875);
-		d.setCpf(1234567880);
+		d.setCpf("12345678810");
 		d.setNome("Paulo");
 		d.setEmail("ass@gmail");
 		d.setTelefone("123456");
@@ -58,7 +58,7 @@ class DonoAnimalDaoTest {
 		d.setLogradouro("Rua Maria Penha");
 		d.setNumero(15);
 		d.setCep(209875090);
-		d.setCpf(1234567880);
+		d.setCpf("12314567880");
 		d.setNome("Paulo");
 		d.setEmail("viola@gmail");
 		d.setTelefone("(21) 2594-5561");
