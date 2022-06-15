@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Painel de Controle | Veterinária</title>
         <link rel="stylesheet" href="../assets/css/root.css">
-        <link rel="stylesheet" href="../assets/css/attendantpanel.css">
+        <link rel="stylesheet" href="../assets/css/container.css">
         <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon/favicon-16x16.png">
@@ -52,61 +52,49 @@
 
 <!-- FIM DO NAVBAR -->
     
-    
-            <main class="main-container">
-                <div class="main-content">
-                    <div class="cabecalho__main">
-                        <div class="container__title">
-                            <h1 id="title">Consultas</h1>
-                        </div>
-                        <div>
-                        </div>
-                    </div>
-                    <div class="main-table">
-                        <div class="table-pacient">
-                            <form action="./redirect.veterinario.listar.consulta.php" class="searchbar" method="get">
-                                <input type="text" class="search__input" name="buscar">
-                                <button type="submit" class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
-                            </form>
-                            <div class="infinit__table">
-    
-                                <table class="table">
-                                    <thead id="thead">
-                                        <tr>
-                                            <th>ID Ficha</th>
-                                            <th>especie</th>
-                                            <th>Nome</th>
-                                            <th>Veterinário</th>
-                                            <th>Dono</th>
-                                            <th>Motivo</th>
-                                            <th>Data</th>
-                                            <th> Atendimento/Edição<i class="fa-solid fa-plus"></i></th>
+<br>
+<div class="container80">
+    <div class="conform">
+        <h2 id="title">Consultas</h2>
+        <form action="./redirect.veterinario.listar.consulta.php" class="searchbar" method="get">
+            <input type="text" class="search__input" name="buscar">
+            <button type="submit" class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID Ficha</th>
+                    <th scope="col">Espécie</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Veterinário</th>
+                    <th scope="col">Dono</th>
+                    <th scope="col">Motivo</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Atendimento/Edição<i class="fa-solid fa-plus"></i></th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                    <?php foreach ($_SESSION['consulta'] as $busca) : ?>
+                        <tr>
+                                            <td><?= $busca->id_ficha ?></td>
+                                            <td><?= $busca->especie ?></td>
+                                            <td><?= $busca->nome_animal ?></td>
+                                            <td><?= $busca->Veterinario ?></td>
+                                            <td><?= $busca->nome_dono ?></td>
+                                            <td><?= $busca->motivo_visita ?></td>
+                                            <td><?= $busca->data_visita ?></td>
+                                            <td>
+                                            <a href="redirect.action.atualizar.ficha.php?idFicha=<?= $busca->id_ficha ?>&nomeanimal=<?= $busca->nome_animal ?>&Veterinario=<?= $busca->Veterinario ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                
+                                            </td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!--FOREACH CONSULTA BUSCA-->
-                                            <tr>
-                                                <td>id_ficha</td>
-                                                <td>especie</td>
-                                                <td>nome_animal</td>
-                                                <td>Veterinario</td>
-                                                <td>nome_dono</td>
-                                                <td>motivo_visita</td>
-                                                <td>data_visita</td>
-                                                <td>
-                                                    <a href="redirect.action.atualizar.ficha.php?idFicha=       &nomeanimal=    &Veterinario=       "><i class="fa-solid fa-pen-to-square"></i></a>
-                                                    
-                                                </td>
-                                            </tr>
-                              
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-        </div>
+                                    <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
     </body>
     
     </html>

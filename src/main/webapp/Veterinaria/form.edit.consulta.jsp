@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Painel de Controle | Veterinária</title>
         <link rel="stylesheet" href="../assets/css/root.css">
-        <link rel="stylesheet" href="../assets/css/attendantpanel.css">
+        <link rel="stylesheet" href="../assets/css/container.css">
         <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon/favicon-16x16.png">
@@ -52,63 +52,53 @@
 
 <!-- FIM DO NAVBAR -->
     
-    
-            <main class="main-container">
-                <button type="submit"  class="btn-ficha" name="idFicha" value="" form="formedita" style="position:absolute; top:15px; left:70px;">Atualizar Ficha</button>
-                <div class="main-content">
-                    <div class="container__title btn__main">
-                        </div>
-                        
-                        <div class="main-table">
-                            <div class="form-ficha">
-                                <form id="formedita" action="./action.atualizar.ficha.php" method="post">
-                                    <div class="form-content">
-                                        
-                                    <div class="ficha-container">
-                                        <div class="box box-p">
-                                            <div class="input__ficha">
-                                                <label for="idFicha" class="label">Ficha: </label>
-                                                <input type="text" class="input" id="idFicha" value="" disabled>
-                                            </div>
-                                            <div class="input__data">
-                                                <label for="dataAgendada" class="label">Data:</label>
-                                                <input type="text" class="input" id="dataAgendada" value="" disabled>
-                                            </div>
-                                        </div>
-                                        <div class="box box-p">
-                                            <div class="input__animal">
-                                                <label for="idAnimal" class="label">Animal:</label>
-                                                <input type="text" class="input" id="idAnimal" value="" disabled>
-                                            </div>
-                                            <div class="">
-                                                <label for="select" class="label">Veterinario:</label>
-                                                <input type="text" class="input" id="animal" value="" disabled>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="container__area">
-                                        <label for="motivo" class="label">Motivo:</label>
-                                        <textarea name="motivo" id="motivo" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""></textarea>
-                                        <label for="diagnostico" class="label">Diagnostico:</label>
-                                        <textarea name="diagnostico" id="" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""></textarea>
-                                        <label for="tratamento" class="label">Tratamento:</label>
-                                        <textarea name="tratamento" id="" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""></textarea>
-                                        <label for="prescricao" class="label">Prescrição:</label>
-                                        <textarea name="prescricao" id="" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""></textarea>
-                                        <label for="observacoes" class="label">Observações:</label>
-                                        <textarea name="observacoes" id="" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""></textarea>
-                                    </div>
-                                    
-                                    
-                                    
-                                    
-                                </form>
-                            </div>
-                    </div>
-                </div>
+<br>
+<div class="container80">
+    <div class="conform">
+        <h2 id="title">Editar Consulta</h2>
+
+        <div class="col-md-12">
+            <button form="cadservico" type="submit" class="btn btn-primary" name="idFicha" value="<?= $_SESSION['atualiza_ficha']->id_ficha ?>" form="formedita">Atualizar Ficha</button>
         </div>
-        </main>
+
+        <form class="row g-3" action="./action.atualizar.ficha.php" method="post" id="cadservico">
+
+        <div class="col-md-6">
+            <label for="idFicha" class="label">Ficha:</label>
+            <input type="text" class="form-control" id="idFicha" value="<?= $_SESSION['atualiza_ficha']->id_ficha ?>" disabled>
         </div>
+        <div class="col-md-6">
+            <label for="dataAgendada" class="label">Data:</label>
+            <input type="text" class="form-control" id="dataAgendada" value="<?= $_SESSION['atualiza_ficha']->data_visita ?>" disabled>
+        </div>
+
+        <div class="col-md-6">
+            <label for="idAnimal" class="label">Animal:</label>
+            <input type="text" class="form-control" id="idAnimal" value="<?= $_GET['nomeanimal'] ?>" disabled>
+        </div>
+        <div class="col-md-6">
+            <label for="select" class="label">Veterinario:</label>
+            <input type="text" class="form-control" id="animal" value="<?= $_GET['Veterinario'] ?>" disabled>
+        </div>
+
+        <div class="container__area">
+            <label for="motivo" class="label">Motivo:</label>
+            <textarea name="motivo" id="motivo" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""><?= $_SESSION['atualiza_ficha']->motivo_visita ?></textarea>
+            <label for="diagnostico" class="label">Diagnostico:</label>
+            <textarea name="diagnostico" id="" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""><?= $_SESSION['atualiza_ficha']->diagnostico ?></textarea>
+            <label for="tratamento" class="label">Tratamento:</label>
+            <textarea name="tratamento" id="" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""><?= $_SESSION['atualiza_ficha']->tratamento ?></textarea>
+            <label for="prescricao" class="label">Prescrição:</label>
+            <textarea name="prescricao" id="" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""><?= $_SESSION['atualiza_ficha']->prescricao ?></textarea>
+            <label for="observacoes" class="label">Observações:</label>
+            <textarea name="observacoes" id="" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""><?= $_SESSION['atualiza_ficha']->observacoes ?></textarea>
+        </div>
+
+        </form>
+</div>
+</div>
+
+
     </body>
     
     </html>
