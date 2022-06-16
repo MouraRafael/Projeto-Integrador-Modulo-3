@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="br.com.veterinaria.model.entidade.Animal" %>
+	<%@ page import="br.com.veterinaria.model.controller.AnimalController" %>
+	<%@ page import="br.com.veterinaria.model.entidade.Raca" %>    
+	<%@ page import="br.com.veterinaria.model.controller.RacaController" %>  
+	<%@ page import="java.util.ArrayList" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -18,7 +23,29 @@
     </head>
     
     <body id="body">
+    <%
+    long idAnimal = Long.parseLong(request.getParameter("id"));
+    long idEspecie = Long.parseLong(request.getParameter("id_especie"));
     
+    
+    
+    RacaController controllerRaca = new RacaController();
+    ArrayList<Raca> lista = controllerRaca.listar(idEspecie);
+    
+    
+    AnimalController controllerAnimal = new AnimalController();
+    Animal a = controllerAnimal.buscaPorId(idAnimal);
+    
+    
+    Animal male = new Animal();
+    Animal female = new Animal();
+    male.setSexo("M");
+    
+    female.setSexo("F");
+    
+    
+    
+    %>
     <!-- NAVBAR-->
     <nav class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd;">
     
@@ -69,23 +96,27 @@
     <div class="container80">
      <div class="conform">
         <h2 id="title">Editar Animal</h2>
-        <form class="row g-3" action="action.atualizar.animal.php" method="post">
+        <form class="row g-3" action="../AnimalEditarServlet" method="post">
             <div class="col-md-6">
                 <label for="nome_animal" class="label">Nome Animal:</label>
-                <input type="text" class="form-control" id="nome" name="nomeAnimal" placeholder="Nome do Animal" value="<?= $_SESSION['idanimal']->Nome ?>">
+                <input type="text" class="form-control" id="nome" name="nomeAnimal" placeholder="Nome do Animal" value="<%= a.getNome() %>">
             </div>
             <div class="col-md-6">
                 <label for="data_nasc" class="label">Data de Nascimento:</label>
-                <input type="date" class="form-control" id="dateanimal" name="dataNascimento" value="<?= $_SESSION['idanimal']->Data_Nascimento?>">
+                <input type="date" class="form-control" id="dateanimal" name="dataNascimento" value="<%= a.getNascimento() %>">
             </div>
             <div class="col-md-6">
                 <label for="sexo_animal" class="label">Sexo:</label>
                 <div class="box-check">
                     <div> 
-                        <input type="radio" id="macho" name="sexo" value="M" > <!-- <?= ($_SESSION['idanimal']->Sexo == "M")? 'checked' : '' ?> -->
+                        <input type="radio" id="macho" name="sexo" value="M" 
+                        <%= (a.getSexo().equals("M")) ? "checked": "" %> > 
                             <label class="m">Macho</label>
-    
-                        <input type="radio" id="femea" name="sexo" value="F"> <!--  <?= ($_SESSION['idanimal']->Sexo == "F")? 'checked' : '' ?> -->
+    					<% //--Comentario 
+    					/* == compara o endereço na memória, o .equals() compara o valor, basicamente
+ */ %>
+                        <input type="radio" id="femea" name="sexo" value="F" 
+                        <%= (a.getSexo().equals("F")) ? "checked": "" %>>
                             <label class="f">Fêmea</label>
                     </div>
                 </div>
@@ -94,22 +125,30 @@
                 <label for="select" class="label">Raça:</label>
                 <select name="select" id="select" autofocus>
                     <option disabled>Selecione a Raça</option>
-                        <!--<?php foreach($_SESSION['listaracas'] as $racas): ?>-->
-                            <!-- <option value="<?= $racas->id_raca ?>" </option> <?= ($racas->id_raca == $_SESSION['idanimal']->id_raca) ? 'selected' : '' ?>><?= $racas->nome_raca ?> </option> -->
-                        <!-- <?php endforeach; ?> -->
+                    
+                    <% 
+                    for(Raca r : lista){
+                    
+                    %>
+                    
+                    <option value="<%= r.getIdRaca() %>"
+                    <%= (a.getRaca().getIdRaca() == r.getIdRaca())? "selected" : "" %>
+                    ><%= r.getNomeRaca() %></option>
+                            
+                        <% } %>
                 </select>
             </div>
     
     
             <div class="col-12">
                 <label for="observacoes" class="label">Observações</label>
-                <input type="text" class="form-control" id="observacoes" name="observacoes" value="<?= $_SESSION['observacoes']->observacoes ?>">
+                <input type="text" class="form-control" id="observacoes" name="observacoes" value="<%= a.getObservacoes() %>">
             
     
             </div>
     
             <div class="col-12">
-                <button type="submit" class="btn btn-primary" name="idanimal" value="<?= $_SESSION['idanimal']->id ?>">Editar Animal</button>
+                <button type="submit" class="btn btn-primary" name="idanimal" value="<%= idAnimal %>">Editar Animal</button>
             </div>
         </form>
       </div>

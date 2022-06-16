@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="br.com.veterinaria.model.entidade.Raca" %>    
+<%@ page import="br.com.veterinaria.model.controller.RacaController" %>    
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -63,12 +66,12 @@
     
     <!-- FIM DO NAVBAR -->
 
-
+	<!-- Cadastro Animal -->>
     <br>
     <div class="container80">
      <div class="conform">
         <h2 id="title">Cadastrar Animal</h2>
-        <form class="row g-3" action="redirect.animal.cadastro2.php" method="post">
+        <form class="row g-3" action="../AnimalCadastraServlet" method="post">
             <div class="col-md-6">
                 <label for="nome_animal" class="label">Nome Animal:</label>
                 <input type="text" class="form-control" id="nome" name="nome_animal" placeholder="Nome do Animal">
@@ -93,20 +96,27 @@
                 <label for="raca_animal" class="label">Raça:</label>
                 <select name="raca_animal" id="select" autofocus>
                     <option value="" selected disabled>Selecione a Raça</option>
-                        <?php foreach ($_SESSION['racas'] as $raca) : ?>
-                    <option value="<?= $raca->id_raca ?>"><?= $raca->nome_raca ?></option>
-                        <?php endforeach; ?>
+                     <%
+                        RacaController controller = new RacaController();
+                     	long especieId = Long.parseLong(request.getParameter("idEspecie"));
+                        ArrayList<Raca> lista = controller.listar(especieId);
+                        
+                        
+                     	for(Raca r : lista){
+                     %>
+                    <option value="<%= r.getIdRaca() %>"><%= r.getNomeRaca() %></option>
+                        <% } %>
                 </select>
             </div>
     
     
             <div class="col-12">
                 <label for="observacoes" class="label">Observações</label>
-                <input type="text" class="form-control" id="observacoes" name="observacoes" placeholder="Observações">
+                <input type="text" class="form-control" id="observacoes" name="observacoes" placeholder="observações">
             </div>
     
             <div class="col-12">
-                <button type="submit" class="btn btn-primary" name="btn_id_dono" value="<?= $_SESSION['id_dono'] ?>">Cadastrar Animal</button>
+                <button type="submit" class="btn btn-primary" name="btn_id_dono" value="<%= request.getParameter("idDono") %>">Cadastrar Animal</button>
             </div>
         </form>
       </div>
