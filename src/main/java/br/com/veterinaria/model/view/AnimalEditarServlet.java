@@ -71,7 +71,7 @@ public class AnimalEditarServlet extends HttpServlet {
 		
 		controller.alterar(a);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/Atendente/listar.animal.jsp");
 		rd.forward(request, response);
 		
 		
