@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="br.com.veterinaria.model.entidade.Animal" %>
+<%@ page import="br.com.veterinaria.model.controller.AnimalController" %>
+<%@ page import ="java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -17,6 +21,16 @@
 </head>
 
 <body id="body">
+<%
+String nomeBusca = request.getParameter("buscar");
+
+if(nomeBusca == null){
+	nomeBusca = "";
+}
+
+
+
+%>
 
 <!-- NAVBAR-->
 <nav class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd;">
@@ -67,7 +81,7 @@
 <div class="container80">
     <div class="conform">
         <h2 id="title">Animais</h2>
-        <form action="./redirect.animal.listar.php" class="searchbar" method="get">
+        <form action="listar.animal.jsp" class="searchbar" method="get">
             <input type="text" class="search__input" name="buscar">
             <button type="submit" class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
@@ -84,20 +98,32 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                <!--<?php foreach ($_SESSION['busca'] as $busca) : ?>-->
+                <!-- Foreach-->
+                <%
+                AnimalController controller = new AnimalController();
+                ArrayList<Animal> lista = controller.listar(nomeBusca);
+                SimpleDateFormat fmtData = new SimpleDateFormat("dd/MM/yyyy");
+                
+                
+                
+                
+                for(Animal a : lista){
+                %>
+                
                     <tr>
-                        <td><?= $busca->id ?></td>
-                        <td><?= $busca->Nome ?></td>
-                        <td><?= $busca->Sexo ?></td>
-                        <td><?= $busca->Data_Nascimento ?></td>
-                        <td><?= $busca->Raca ?></td>
-                        <td><?= $busca->Dono ?></td>
+                        <td><%= a.getId_animal() %></td>
+                        <td><%= a.getNome() %></td>
+                        <td><%= a.getSexo() %></td>
+                        <td><%= a.getNascimento() %></td>
+                        <td><%= a.getRaca().getNomeRaca() %></td>
+                        <td><%= a.getDono().getNome() %></td>
                         <td>
-                            <a href="./redirect.cadastro.consulta.php?idAnimal=     &nomeAnimal=    "><i class="fa-solid fa-file-pen"></i></a>
-                            <a href="./redirect.action.editar.animal.php?id=        &id_especie=        "><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="./form.cadastro.consulta.jsp?idAnimal=<%= a.getId_animal() %>&nomeAnimal=<%= a.getNome() %>"><i class="fa-solid fa-file-pen"></i></a>
+                            <a href="./form.edit.animal.jsp?id=<%= a.getId_animal() %>&id_especie=<%=a.getRaca().getIdEspecie() %>        "><i class="fa-solid fa-pen-to-square"></i></a>
                         </td>
                     </tr>
-                <!--<?php endforeach; ?>-->
+                 <% } %>
+                
             </tbody>
         </table>
     </div>
