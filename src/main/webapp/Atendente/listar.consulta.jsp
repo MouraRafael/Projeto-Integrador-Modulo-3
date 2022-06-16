@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-    <!DOCTYPE html>
-    <html lang="pt-br">
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="br.com.veterinaria.model.entidade.FichaAtendimento" %>
+<%@ page import="br.com.veterinaria.model.controller.FichaAtendimentoController" %>
+<!DOCTYPE html>
+<html lang="pt-br">
     
-    <head>
+<head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Painel de Controle | Atendente</title>
@@ -15,9 +17,22 @@
         <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon/favicon-16x16.png">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/33abab1032.js" crossorigin="anonymous"></script>
-    </head>
+</head>
     
-    <body id="body">
+<body id="body">
+
+<% 
+String nomeBusca = request.getParameter("buscar");
+
+if(nomeBusca == null){
+	nomeBusca = "";
+}
+
+
+
+%>
+
+
     
 <!-- NAVBAR-->
   <nav class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd;">
@@ -68,7 +83,7 @@
 <div class="container80">
     <div class="conform">
         <h2 id="title">Consultas</h2>
-        <form action="./redirect.consulta.listar.php" class="searchbar" method="get">
+        <form action="listar.consulta.jsp" class="searchbar" method="get">
             <input type="text" class="search__input" name="buscar">
             <button type="submit" class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
@@ -86,20 +101,28 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                    <!-- <?php foreach ($_SESSION['consulta'] as $busca) : ?> -->
+                    
+                    <% 
+                    FichaAtendimentoController controller = new FichaAtendimentoController();
+                    ArrayList<FichaAtendimento> lista	= controller.listar(nomeBusca);
+                    
+                    for(FichaAtendimento f : lista){
+                    
+                    %>
+                    
                         <tr>
-                                            <td><?= $busca->id_ficha ?></td>
-                                            <td><?= $busca->especie ?></td>
-                                            <td><?= $busca->nome_animal ?></td>
-                                            <td><?= $busca->Veterinario ?></td>
-                                            <td><?= $busca->nome_dono ?></td>
-                                            <td><?= $busca->motivo_visita ?></td>
-                                            <td><?= $busca->data_visita ?></td>
+                                            <td><%= f.getIdFicha() %></td>
+                                            <td><%= f.getAnimal().getRaca().getNomeEspecie() %></td>
+                                            <td><%= f.getAnimal().getNome() %></td>
+                                            <td><%= f.getVeterinario().getNome() %></td>
+                                            <td><%= f.getDono().getNome() %></td>
+                                            <td><%= f.getMotivoVisita() %></td>
+                                            <td><%= f.getData() %></td>
                                             <td>
-                                                <a href="redirect.servicos.listar.php?idficha=      &nomeanimal=        "><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a href="form.cadastro.servico.consulta?idficha=<%= f.getIdFicha() %>&nomeanimal=<%= f.getAnimal().getNome() %>"><i class="fa-solid fa-pen-to-square"></i></a>
                                             </td>
                                         </tr>
-                    <!-- <?php endforeach; ?> -->
+                    <% } %>
             </tbody>
         </table>
     </div>
