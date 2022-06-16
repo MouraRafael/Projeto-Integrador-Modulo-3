@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexao {
-	private String caminho = "jdbc:mysql://localhost:3306/veterinario";
+	private String caminho = "jdbc:mysql://localhost:3306/clinica";
 	private String usuario = "root";
 	private String senha = "";
 	
