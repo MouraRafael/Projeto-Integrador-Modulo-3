@@ -57,7 +57,7 @@ class DonoAnimalControllerTest {
 		d.setLogradouro("15");
 		d.setNumero(123);
 		d.setCep(20890090);
-		d.setCpf(987654321);
+		d.setCpf("987654321");
 		d.setNome("Joaquim");
 		d.setEmail("joaquin@gmail");
 		d.setTelefone("(22) 2256-6261");
@@ -79,7 +79,7 @@ class DonoAnimalControllerTest {
 		d.setLogradouro("15");
 		d.setNumero(123);
 		d.setCep(20890090);
-		d.setCpf(987654321);
+		d.setCpf("987654321");
 		d.setNome("Joaquim");
 		d.setEmail("joaquin@gmail.com");
 		d.setTelefone("(22) 2256-6261");
