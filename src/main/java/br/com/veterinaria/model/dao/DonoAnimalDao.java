@@ -65,7 +65,7 @@ public class DonoAnimalDao extends Conexao {
 	public DonoAnimal buscaPorId(long num){
 		DonoAnimal d = null;
 
-		String sql = "SELECT cpf, Nome, telefone, email, id_end, cidade, bairro, logradouro, numero, CEP FROM dados_cliente_id WHERE id_dono = ?";
+		String sql = "SELECT id_dono, cpf, Nome, telefone, email, id_end, cidade, bairro, logradouro, numero, CEP FROM dados_cliente_id WHERE id_dono = ?";
 
 		try{
 			PreparedStatement ps = getConexao().prepareStatement(sql);
@@ -75,6 +75,7 @@ public class DonoAnimalDao extends Conexao {
 
 			if(rs.next()){
 				d = new DonoAnimal();
+				d.setId_dono(rs.getLong("id_dono"));
 				d.setCpf(rs.getString("cpf"));
 				d.setNome(rs.getString("Nome"));
 				d.setTelefone(rs.getString("telefone"));
