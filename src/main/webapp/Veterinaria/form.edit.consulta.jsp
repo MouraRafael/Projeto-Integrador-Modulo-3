@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="br.com.veterinaria.model.entidade.FichaAtendimento" %>
+<%@ page import="br.com.veterinaria.model.controller.FichaAtendimentoController" %>    
+    
+    
     <!DOCTYPE html>
     <html lang="pt-br">
     
@@ -17,6 +21,26 @@
     </head>
     
     <body id="body">
+    <%
+    long idFicha = Long.parseLong(request.getParameter("idFicha"));
+    String nomeAnimal = request.getParameter("nomeanimal");
+    String nomeVet = request.getParameter("Veterinario");
+    
+    FichaAtendimentoController controller = new FichaAtendimentoController();
+    
+    FichaAtendimento f = controller.buscaPorId(idFicha);
+    
+    if(f.getDiagnostico() == null){f.setDiagnostico("");}
+    if(f.getTratamento() == null){f.setTratamento("");}
+    if(f.getPrescricao() == null){f.setPrescricao("");}
+    if(f.getObservacoes() == null){f.setObservacoes("");}
+    
+    
+    %>
+    
+    
+    
+    
 <!-- NAVBAR-->
 <nav class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd;">
 
@@ -24,7 +48,7 @@
         <a class="navbar-brand" href="../index.jsp"><img src="../assets/img/logo/petmania-black-153.png" alt="..." height="100px"></a>
 
         <form class="d-flex ms-5">
-        <button class="btn btn-primary" formaction="./lista.consultas.jsp">Veterinário</button>
+        <button class="btn btn-primary" formaction="../FichaMedicaEditaServlet">Veterinário</button>
         </form>
 
         <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,40 +82,40 @@
         <h2 id="title">Editar Consulta</h2>
 
         <div class="col-md-12">
-            <button form="cadservico" type="submit" class="btn btn-primary" name="idFicha" value="<?= $_SESSION['atualiza_ficha']->id_ficha ?>" form="formedita">Atualizar Ficha</button>
+            <button form="cadservico" type="submit" class="btn btn-primary" name="idFicha" value="<%= f.getIdFicha() %>" form="formedita">Atualizar Ficha</button>
         </div>
 
-        <form class="row g-3" action="./action.atualizar.ficha.php" method="post" id="cadservico">
+        <form class="row g-3" action="../FichaMedicaEditaServlet" method="post" id="cadservico">
 
         <div class="col-md-6">
             <label for="idFicha" class="label">Ficha:</label>
-            <input type="text" class="form-control" id="idFicha" value="<?= $_SESSION['atualiza_ficha']->id_ficha ?>" disabled>
+            <input type="text" class="form-control" id="idFicha" value="<%= f.getIdFicha() %>" disabled>
         </div>
         <div class="col-md-6">
             <label for="dataAgendada" class="label">Data:</label>
-            <input type="text" class="form-control" id="dataAgendada" value="<?= $_SESSION['atualiza_ficha']->data_visita ?>" disabled>
+            <input type="text" class="form-control" id="dataAgendada" value="<%= f.getData() %>" disabled>
         </div>
 
         <div class="col-md-6">
             <label for="idAnimal" class="label">Animal:</label>
-            <input type="text" class="form-control" id="idAnimal" value="<?= $_GET['nomeanimal'] ?>" disabled>
+            <input type="text" class="form-control" id="idAnimal" value="<%= f.getAnimal().getNome() %>" disabled>
         </div>
         <div class="col-md-6">
             <label for="select" class="label">Veterinario:</label>
-            <input type="text" class="form-control" id="animal" value="<?= $_GET['Veterinario'] ?>" disabled>
+            <input type="text" class="form-control" id="animal" value="<%= f.getVeterinario().getNome() %>" disabled>
         </div>
 
         <div class="container__area">
             <label for="motivo" class="label">Motivo:</label>
-            <textarea name="motivo" id="motivo" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""><?= $_SESSION['atualiza_ficha']->motivo_visita ?></textarea>
+            <textarea name="motivo" id="motivo" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""><%= f.getMotivoVisita() %></textarea>
             <label for="diagnostico" class="label">Diagnostico:</label>
-            <textarea name="diagnostico" id="" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""><?= $_SESSION['atualiza_ficha']->diagnostico ?></textarea>
+            <textarea name="diagnostico" id="" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""><%= f.getDiagnostico() %></textarea>
             <label for="tratamento" class="label">Tratamento:</label>
-            <textarea name="tratamento" id="" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""><?= $_SESSION['atualiza_ficha']->tratamento ?></textarea>
+            <textarea name="tratamento" id="" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""><%= f.getTratamento() %></textarea>
             <label for="prescricao" class="label">Prescrição:</label>
-            <textarea name="prescricao" id="" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""><?= $_SESSION['atualiza_ficha']->prescricao ?></textarea>
+            <textarea name="prescricao" id="" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""><%= f.getPrescricao() %></textarea>
             <label for="observacoes" class="label">Observações:</label>
-            <textarea name="observacoes" id="" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""><?= $_SESSION['atualiza_ficha']->observacoes ?></textarea>
+            <textarea name="observacoes" id="" cols="30" rows="10" class="ficha__textarea" maxlength="300" class=""><%= f.getObservacoes() %></textarea>
         </div>
 
         </form>
