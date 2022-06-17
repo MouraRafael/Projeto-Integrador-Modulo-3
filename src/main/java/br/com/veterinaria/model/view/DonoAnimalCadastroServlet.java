@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class DonoAnimalServlet
+ * Servlet implementation class DonoAnimalCadastroServlet
  */
 public class DonoAnimalCadastroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -37,17 +37,18 @@ public class DonoAnimalCadastroServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String nome = request.getParameter("nome");
+		String nome = request.getParameter("nome_cliente");
 		String cpf = request.getParameter("cpf");
 		String email = request.getParameter("email");
 		String telefone = request.getParameter("telefone");
 		String cidade = request.getParameter("cidade");
 		String bairro = request.getParameter("bairro");
 		String logradouro = request.getParameter("logradouro");
-		String cep = request.getParameter("cep");
-		String numero = request.getParameter("numero");
+		String strcep = request.getParameter("cep");
+		String strnumero = request.getParameter("numero");
 		
-
+		long cep = Long.parseLong(strcep);
+		long numero = Long.parseLong(strnumero);
 		
 		try {
 
@@ -81,7 +82,7 @@ public class DonoAnimalCadastroServlet extends HttpServlet {
 		
 		
 		//pagina encaminhada
-		RequestDispatcher rd = request.getRequestDispatcher("listarprofessor.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("./Atendente/listar.cliente.jsp");
 		rd.forward(request, response);
 		
 		//doGet(request, response);

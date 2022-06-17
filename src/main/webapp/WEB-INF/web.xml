@@ -29,4 +29,14 @@
     <servlet-name>AnimalEditarServlet</servlet-name>
     <url-pattern>/AnimalEditarServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DonoAnimalCadastroServlet</display-name>
+    <servlet-name>DonoAnimalCadastroServlet</servlet-name>
+    <servlet-class>br.com.veterinaria.model.view.DonoAnimalCadastroServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DonoAnimalCadastroServlet</servlet-name>
+    <url-pattern>/DonoAnimalCadastroServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

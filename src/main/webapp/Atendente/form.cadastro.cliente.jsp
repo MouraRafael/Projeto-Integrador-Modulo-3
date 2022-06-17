@@ -67,7 +67,7 @@
 <div class="container80">
  <div class="conform">
     <h2 id="title">Cadastrar Cliente</h2>
-    <form class="row g-3" action="DonoAnimalCadastroServlet" method="post">
+    <form class="row g-3" action="../DonoAnimalCadastroServlet" method="post">
         <div class="col-md-6">
             <label for="cliente" class="label">Nome:</label>
             <input type="text" class="form-control" id="nome" name="nome_cliente" placeholder="Digite Seu Nome">        
