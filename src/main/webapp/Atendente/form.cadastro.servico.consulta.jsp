@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="utf-8"%>
-    <!--<?php session_start();
-    $_SESSION['servicos'];
-    $_SESSION['todosservicos'];
-    ?>-->
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="br.com.veterinaria.model.entidade.Servico" %>
+<%@ page import="br.com.veterinaria.model.controller.ServicoController" %>
     <!DOCTYPE html>
     <html lang="pt-br">
     
@@ -68,24 +67,31 @@
         <!-- FIM DO NAVBAR -->
     
     
-<br>
+    <br>
     <div class="container80">
         <div class="conform">
             <h2 id="title">Serviços</h2>      
-            <form class="row g-3" action="action.adicionar.servico.php" method="post" id="cadservico">
+            <form class="row g-3" action="../ServicoCadastraServlet" method="post" id="cadservico">
         
         <div class="col-md-6">
-            <label for="servico" class="label">Serviço para atendimento de id <!-- -<?= $_GET['idficha']?> ao paciente <?= $_GET['nomeanimal']?> --> :</label>
+            <label for="servico" class="label">Serviço para atendimento de id <%= request.getParameter("idficha") %> ao paciente <%= request.getParameter("nomeanimal") %> :</label>
             <select name="servico" id="select" autofocus>
                 <option value="" selected disabled>Selecione o Serviço</option>
-                    <!-- <?php foreach ($_SESSION['todosservicos'] as $alterar) : ?>  -->
-                        <option value="<?= $alterar->id ?>"> <!-- <?= $alterar->servico ?> --> </option>
-                    <!-- <?php endforeach; ?> -->
+                    <%
+                    ServicoController controller = new ServicoController();
+                    
+                    ArrayList<Servico> lista = controller.listarServicos();
+                    
+                    for(Servico s : lista){
+                    
+                    %>
+                        <option value="<%= s.getIdServico() %>"> <%= s.getServico() %> </option>
+                    <% } %>
             </select>
         </div>
         
         <div class="col-md-6">
-            <button form="cadservico" type="submit" class="btn btn-primary" name="idficha" value="<?= $_GET['idficha'] ?>">Cadastrar Serviço</button>
+            <button form="cadservico" type="submit" class="btn btn-primary" name="idficha" value="<%= request.getParameter("idficha") %>">Cadastrar Serviço</button>
         </div>
                              
         
@@ -103,15 +109,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($_SESSION['servicos'] as $servico) : ?>
+                            <%
+                            String strIdFicha = request.getParameter("idficha");
+                            long	idFicha = Long.parseLong(strIdFicha); 
+                            
+                            ArrayList<Servico> listaPrestados = controller.listarServicosPrestados(idFicha);
+                            
+                            for(Servico serv : listaPrestados){
+                            
+                            %>
                                 <tr>
-                                    <td><?= $servico->id_servico ?></td>
-                                    <td><?= $servico->nome_servico ?></td>
+                                    <td><%= serv.getIdServico() %></td>
+                                    <td><%= serv.getServico() %> </td>
                                     <td>
-                                        <a href="./redirect.deletar.servico.php?idservico=<?= $servico->id_servico ?>&idficha=<?= $_GET['idficha']?>" onclick="return confirm('Deseja realmente deletar o serviço?')"><i class="fa-solid fa-eraser"></i></a>
+                                        <a href="../ServicoDeletaServlet?idservico=<%= serv.getIdServico() %>&idficha=<%= serv.getIdFicha() %>" onclick="return confirm('Deseja realmente deletar o serviço?')"><i class="fa-solid fa-eraser"></i></a>
                                     </td>
                                 </tr>
-                            <?php endforeach; ?>
+                            <% } %>
                         </tbody>
                     </table>
                 

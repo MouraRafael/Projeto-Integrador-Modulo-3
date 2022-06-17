@@ -73,9 +73,11 @@ public class AnimalCadastraServlet extends HttpServlet {
 		System.out.println(a.getSexo());
 		controller.incluir(a);
 		
+		/*
 		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		rd.forward(request,response);
-		
+		*/
+		response.sendRedirect("./Atendente/listar.animal.jsp");
 		
 		
 		

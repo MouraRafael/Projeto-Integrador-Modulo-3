@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="br.com.veterinaria.model.entidade.Veterinario" %>
+<%@ page import="br.com.veterinaria.model.controller.VeterinarioController" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -68,25 +71,31 @@
 <div class="container80">
     <div class="conform">
         <h2 id="title">Cadastrar Consulta</h2>
-        <form class="row g-3" action="./action.cadastrar.consulta.php" method="post">
+        <form class="row g-3" action="../FichaMedicaCadastraServlet" method="post">
             <div class="col-md-6">
                 <label for="animal" class="label">Animal:</label>
-                <input type="text" class="input" id="animal" value="<?= $_GET['nomeAnimal']?>" disabled>
+                <input type="text" class="input" id="animal" value="<%= request.getParameter("nomeAnimal") %>" disabled>
             </div>
             <div class="col-md-6">
                 <label for="select" class="label">Veterinario:</label>
                 <select name="idVet" id="select" autofocus>
                     <option selected disabled>Escolha um Veterinário</option>
-                    <?php foreach($_SESSION['listamedicos'] as $vet): ?>
-                        <option value="<?= $vet->id_vet?>"><?= $vet->nome_vet?></option>
-                    <?php endforeach ?>
+                    <%
+                    VeterinarioController controller = new VeterinarioController();
+                    
+                    ArrayList<Veterinario> lista = controller.listarAtendimento();
+                    
+                    for(Veterinario v : lista){
+                    %>
+                        <option value="<%= v.getIdVet() %>"><%= v.getNome() %></option>
+                    <% } %>
                 </select>
             </div>
 
             <div class="col-md-12">
                 <label for="" class="label">Motivo:</label>
                 <textarea name="motivo" id="" cols="30" rows="10" class="textarea" maxlength="300" class=""></textarea>
-                <button type="submit" class="btn btn-primary" name="idAnimal" value="<?= $_GET['idAnimal']?>" class="cad-consult btn">Cadastrar Consulta</button> 
+                <button type="submit" class="btn btn-primary" name="idAnimal" value="<%= request.getParameter("idAnimal") %>" class="cad-consult btn">Cadastrar Consulta</button> 
             </div>
         </form>
     </div>

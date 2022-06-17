@@ -80,7 +80,7 @@ public class VeterinarioDao extends Conexao{
 				while(rs.next()){
 					vet = new Veterinario();
 					
-					vet.setIdVet(rs.getInt("id_vet"));
+					vet.setIdVet(rs.getLong("id_vet"));
 					vet.setNome(rs.getString(2));
 
 					lista.add(vet);

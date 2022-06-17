@@ -27,7 +27,7 @@ class AnimalControllerTest {
 		
 				
 		a.setId_dono(1);
-		a.setNome("Juvenal");
+		a.setNome("Shiro");
 		a.setSexo("M");
 
 				

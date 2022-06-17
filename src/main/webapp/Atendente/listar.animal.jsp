@@ -36,7 +36,7 @@ if(nomeBusca == null){
 <nav class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd;">
 
     <div class="container-fluid">
-        <a class="navbar-brand" href="../index.jsp"><img src="../assets/img/logo/petmania-black-153.png" alt="..." height="100px"></a>
+        <a class="navbar-brand" href="index.jsp"><img src="../assets/img/logo/petmania-black-153.png" alt="..." height="100px"></a>
 
         <form class="d-flex ms-5">
             <button class="btn btn-success" formaction="./listar.cliente.jsp">Atendente</button>

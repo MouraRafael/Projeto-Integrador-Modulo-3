@@ -48,7 +48,7 @@ public class ServicoDao extends Conexao {
 	public ArrayList<Servico> listarServicosPrestados(long num){
 		ArrayList<Servico> lista = new ArrayList<Servico>();
 		Servico s = null;
-		String sql = "SELECT id_ficha_medica, id_servico, nome_servico FROM liga_fichamedica WHERE id_ficha_medica = ?;";
+		String sql = "SELECT DISTINCT id_ficha_medica, id_servico, nome_servico FROM liga_fichamedica WHERE id_ficha_medica = ?;";
 
 		
 		
@@ -101,6 +101,31 @@ public class ServicoDao extends Conexao {
 		}
 
 
+		return mensagem;
+	}
+	
+	public String incluir (Servico s) {
+		String mensagem = "";
+		String sql = "INSERT INTO ficham_servicos(id_ficha_medica, id_servico) VALUES(?,?)";
+		
+		try {
+			PreparedStatement ps = getConexao().prepareStatement(sql);
+			ps.setLong(1, s.getIdFicha());
+			ps.setLong(2, s.getIdServico());
+
+			int deleta = ps.executeUpdate();
+			
+			if(deleta>0) {
+				mensagem = "sucesso";
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			mensagem = "falha";
+		}finally{
+			fecharConexao();
+		}
+		
 		return mensagem;
 	}
 
