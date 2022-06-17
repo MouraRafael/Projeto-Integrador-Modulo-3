@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="br.com.veterinaria.model.entidade.FichaAtendimento" %>
+<%@ page import="br.com.veterinaria.model.controller.FichaAtendimentoController" %>    
+    
+    
     <!DOCTYPE html>
     <html lang="pt-br">
     
@@ -17,6 +22,22 @@
     </head>
     
     <body id="body">
+<% 
+String nomeBusca = request.getParameter("buscar");
+
+if(nomeBusca == null){
+	nomeBusca = "";
+}
+
+
+
+%>
+    
+    
+    
+    
+    
+    
 <!-- NAVBAR-->
 <nav class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd;">
 
@@ -56,7 +77,7 @@
 <div class="container80">
     <div class="conform">
         <h2 id="title">Consultas</h2>
-        <form action="./redirect.veterinario.listar.consulta.php" class="searchbar" method="get">
+        <form action="lista.consultas.jsp" class="searchbar" method="get">
             <input type="text" class="search__input" name="buscar">
             <button type="submit" class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
@@ -74,21 +95,27 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                    <?php foreach ($_SESSION['consulta'] as $busca) : ?>
+                   <% 
+                    FichaAtendimentoController controller = new FichaAtendimentoController();
+                    ArrayList<FichaAtendimento> lista	= controller.listar(nomeBusca);
+                    
+                    for(FichaAtendimento f : lista){
+                    
+                    %>
                         <tr>
-                                            <td><?= $busca->id_ficha ?></td>
-                                            <td><?= $busca->especie ?></td>
-                                            <td><?= $busca->nome_animal ?></td>
-                                            <td><?= $busca->Veterinario ?></td>
-                                            <td><?= $busca->nome_dono ?></td>
-                                            <td><?= $busca->motivo_visita ?></td>
-                                            <td><?= $busca->data_visita ?></td>
+                                            <td><%= f.getIdFicha() %></td>
+                                            <td><%= f.getAnimal().getRaca().getNomeEspecie() %></td>
+                                            <td><%= f.getAnimal().getNome() %></td>
+                                            <td><%= f.getVeterinario().getNome() %></td>
+                                            <td><%= f.getDono().getNome() %></td>
+                                            <td><%= f.getMotivoVisita() %></td>
+                                            <td><%= f.getData() %></td>
                                             <td>
-                                            <a href="redirect.action.atualizar.ficha.php?idFicha=<?= $busca->id_ficha ?>&nomeanimal=<?= $busca->nome_animal ?>&Veterinario=<?= $busca->Veterinario ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <a href=".form.edit.consulta.jsp?idFicha=<%= f.getIdFicha() %>&nomeanimal=<%= f.getAnimal().getNome() %>&Veterinario=<%= f.getVeterinario().getNome() %>"><i class="fa-solid fa-pen-to-square"></i></a>
                                                 
                                             </td>
                                         </tr>
-                                    <?php endforeach; ?>
+                                   <% } %>>
             </tbody>
         </table>
     </div>
