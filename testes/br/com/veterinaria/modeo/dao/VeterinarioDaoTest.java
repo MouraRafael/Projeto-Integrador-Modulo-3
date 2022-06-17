@@ -14,12 +14,12 @@ class VeterinarioDaoTest {
 	VeterinarioDao dao = new VeterinarioDao();
 
 	@Test
-	@Disabled
+	//@Disabled
 	void cadastro() {
 		Veterinario v = new Veterinario();
 		
-		v.setNome("Felipe");
-		v.setCpf("45612378935");
+		v.setNome("Mariano Santos");
+		v.setCpf("45615678935");
 		v.setEmail("mario@vetpetmania");
 		v.setTelefone("(21) 2532-6465");
 		v.setCidade("Rio de Janeiro");
