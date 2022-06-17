@@ -24,6 +24,17 @@
 </head>
 
 <body id="body">
+<%
+String nomeBusca = request.getParameter("buscar");
+
+if(nomeBusca == null){
+	nomeBusca = "";
+}
+
+
+
+%>
+
 
 <!-- NAVBAR-->
 <nav class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd;">
@@ -75,7 +86,7 @@
     <div class="conform">
         <h2 id="title">Clientes</h2>
         <a href="./form.cadastro.cliente.jsp" class="btn__lista cliente">Cadastrar Cliente</a>
-        <form action="./redirect.cliente.listar.php" class="searchbar" method="get">
+        <form action="listar.cliente.jsp" class="searchbar" method="get">
             <input type="text" class="search__input" name="buscar">
             <button type="submit" class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
@@ -92,7 +103,7 @@
             <tbody class="table-group-divider">
                    <%
 				DonoAnimalController controller = new DonoAnimalController();
-				ArrayList<DonoAnimal> lista = controller.listar("");
+				ArrayList<DonoAnimal> lista = controller.listar(nomeBusca);
 		
 				for (DonoAnimal d : lista) {
 					%>
