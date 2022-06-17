@@ -47,10 +47,14 @@ public class DonoAnimalCadastroServlet extends HttpServlet {
 		String strcep = request.getParameter("cep");
 		String strnumero = request.getParameter("numero");
 		
-		long cep = Long.parseLong(strcep);
-		long numero = Long.parseLong(strnumero);
+		long cep = 0;
+		long numero = 0;
+		
 		
 		try {
+		cep = Long.parseLong(strcep);
+		numero = Long.parseLong(strnumero);
+		
 
 		} catch(Exception e) {
 			
