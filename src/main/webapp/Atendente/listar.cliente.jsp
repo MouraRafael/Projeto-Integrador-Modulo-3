@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import="br.com.veterinaria.model.controller.DonoAnimalController" %>
+<%@ page import="br.com.veterinaria.model.entidade.DonoAnimal" %>
+
+<%@ page import="java.util.ArrayList" %>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -83,19 +90,27 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                    <!-- <?php foreach ($_SESSION['clientes'] as $cl) : ?> -->
+                   <%
+				DonoAnimalController controller = new DonoAnimalController();
+				ArrayList<DonoAnimal> lista = controller.listar("");
+		
+				for (DonoAnimal d : lista) {
+					%>
                     <tr>
-                    <td><!--<?= $cl->id_dono ?>--></td>
-                                            <td><!--<?= $cl->Nome ?>--></td>
-                                            <td><!--<?= $cl->telefone ?>--></td>
-                                            <td><!--<?= $cl->email ?>--></td>
+                    <td><%= d.getId_dono() %></td>
+                                            <td><%= d.getNome() %></td>
+                                            <td><%= d.getTelefone() %></td>
+                                            <td><%= d.getEmail() %></td>
+
                                             <td>
                                                 <a href="./redirect.animal.cadastro.php?id_dono=<?= $cl->id_dono ?>&id_especie=1"><i class="fa-solid fa-dog"></i></a>
                                                 <a href="./redirect.animal.cadastro.php?id_dono=<?= $cl->id_dono ?>&id_especie=2"><i class="fa-solid fa-cat"></i></a>
                                                 <a href="./redirect.action.editar.cliente.php?id_dono=<?= $cl->id_dono ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                                             </td>
                     </tr>
-                <!-- <?php endforeach; ?> -->
+                <% }
+
+					%>
             </tbody>
         </table>
     </div>
