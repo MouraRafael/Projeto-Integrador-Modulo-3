@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="br.com.veterinaria.model.controller.DonoAnimalController" %>
+<%@ page import="br.com.veterinaria.model.entidade.DonoAnimal" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -17,6 +19,19 @@
     </head>
     
     <body id="body">
+    
+   <%
+   long idDono = Long.parseLong(request.getParameter("id_dono"));
+   
+   
+   DonoAnimalController controller = new DonoAnimalController();
+   
+   DonoAnimal d = controller.buscaPorId(idDono);
+   
+   %>
+    
+    
+   
     
     <!-- NAVBAR-->
     <nav class="navbar navbar-expand-md navbar-light" style="background-color: #e3f2fd;">
@@ -67,63 +82,63 @@
     <div class="container80">
      <div class="conform">
         <h2 id="title">Editar Cliente</h2>
-        <form class="row g-3" action="./action.atualizar.cliente.php" method="post">
+        <form class="row g-3" action="../DonoAnimalEditaServlet" method="post">
             <div class="col-md-6">
                 <label for="cliente" class="label">Nome:</label>
-                <input type="text" class="form-control" id="nome" name="nome_cliente" placeholder="Digite Seu Nome" value="<?= $_SESSION['atualiza_cliente']->Nome ?>">
+                <input type="text" class="form-control" id="nome" name="nome_cliente" placeholder="Digite Seu Nome" value="<%= d.getNome() %>">
             </div>
             <div class="col-md-6">
                 <label for="cpf" class="label">CPF:</label>
-                <input type="text" class="form-control" id="cpf" name="cpf" value="<?= $_SESSION['atualiza_cliente']->cpf ?>"
+                <input type="number" class="form-control" id="cpf" name="cpf" value="<%= d.getCpf() %>"
                                                 placeholder="000.000.000-00">
             </div>
             
             <div class="col-md-6">
                 <label for="email" class="label">Email:</label>
-                <input type="text" class="form-control" id="email" name="email" value="<?= $_SESSION['atualiza_cliente']->email ?>"
+                <input type="text" class="form-control" id="email" name="email" value="<%= d.getEmail() %>"
                                                 placeholder="Digite Seu Email">
             </div>
             <div class="col-md-6">
                 <label for="telefone" class="label">Telefone:</label>
-                <input type="text" class="form-control" id="telefone" name="telefone" value="<?= $_SESSION['atualiza_cliente']->telefone ?>"
+                <input type="text" class="form-control" id="telefone" name="telefone" value="<%= d.getTelefone() %>"
                                                 placeholder="(00) 00000-0000">
             </div>
     
             <div class="col-md-6">
                 <label for="cidade" class="label">Cidade:</label>
-                <input type="text" class="form-control" id="cidade" name="cidade" value="<?= $_SESSION['atualiza_cliente']->cidade ?>"
+                <input type="text" class="form-control" id="cidade" name="cidade" value="<%= d.getCidade() %>"
                                                 placeholder="Digite o Nome da Sua Cidade">
             </div>
             <div class="col-md-6">
                 <label for="bairro" class="label">Bairro:</label>
-                <input type="text" class="form-control" id="bairro" name="bairro" value="<?= $_SESSION['atualiza_cliente']->bairro ?>"
+                <input type="text" class="form-control" id="bairro" name="bairro" value="<%= d.getBairro() %>"
                                                 placeholder="Digite o Nome da Seu Bairro">
             </div>
     
             <div class="col-md-12">
                 <label for="logradouro" class="label">Logradouro:</label>
-                <input type="text" class="form-control" id="logradouro" name="logradouro" value="<?= $_SESSION['atualiza_cliente']->logradouro ?>"
+                <input type="text" class="form-control" id="logradouro" name="logradouro" value="<%= d.getLogradouro() %>"
                                                 placeholder="Digite o Seu Logradouro">
             </div>
     
             <div class="col-md-6">
                 <label for="cep" class="label">CEP:</label>
-                <input type="text" class="form-control" id="cep" name="cep" value="<?= $_SESSION['atualiza_cliente']->CEP ?>"
+                <input type="number" class="form-control" id="cep" name="cep" value="<%= d.getCep() %>"
                                                 placeholder="CEP">
             </div>
             <div class="col-md-6">
                 <label for="numero" class="label">Número:</label>
-                <input type="text" class="form-control" id="numero" name="numero" value="<?= $_SESSION['atualiza_cliente']->numero ?>" placeholder="Nº">
+                <input type="number" class="form-control" id="numero" name="numero" value="<%= d.getNumero() %>" placeholder="Nº">
             </div>
     
     
     
-            <input type="hidden" id="id_end" name="id_end" value="<?= $_SESSION['atualiza_cliente']->endereco ?>">
+            <input type="hidden" id="id_end" name="id_end" value="<%= d.getIdEndereco() %>">
     
     
     
             <div class="col-12">
-                <button type="submit" class="btn btn-primary" name="id_cliente" value="<?= $_SESSION['atualiza_cliente']->id_dono ?>">
+                <button type="submit" class="btn btn-primary" name="id_cliente" value="<%= d.getId_dono() %>">
                                     Editar Cliente</button> 
                 
             </div>

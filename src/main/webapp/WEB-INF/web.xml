@@ -79,4 +79,14 @@
     <servlet-name>FichaMedicaEditaServlet</servlet-name>
     <url-pattern>/FichaMedicaEditaServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DonoAnimalEditaServlet</display-name>
+    <servlet-name>DonoAnimalEditaServlet</servlet-name>
+    <servlet-class>br.com.veterinaria.model.view.DonoAnimalEditaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DonoAnimalEditaServlet</servlet-name>
+    <url-pattern>/DonoAnimalEditaServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

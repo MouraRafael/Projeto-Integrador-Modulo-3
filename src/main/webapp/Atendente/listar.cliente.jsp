@@ -116,7 +116,7 @@ if(nomeBusca == null){
                                             <td>
                                                 <a href="./form.cadastro.animal.jsp?idEspecie=1&idDono=<%= d.getId_dono() %>"><i class="fa-solid fa-dog"></i></a>
                                                 <a href="./form.cadastro.animal.jsp?idEspecie=2&idDono=<%= d.getId_dono() %>"><i class="fa-solid fa-cat"></i></a>
-                                                <a href="./redirect.action.editar.cliente.php?id_dono=<?= $cl->id_dono ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a href="./form.edit.cliente.jsp?id_dono=<%= d.getId_dono() %>"><i class="fa-solid fa-pen-to-square"></i></a>
                                             </td>
                     </tr>
                 <% }
