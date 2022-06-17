@@ -71,7 +71,7 @@
     <div class="container80">
         <div class="conform">
             <h2 id="title">Serviços</h2>      
-            <form class="row g-3" action="action.adicionar.servico.php" method="post" id="cadservico">
+            <form class="row g-3" action="../ServicoCadastraServlet" method="post" id="cadservico">
         
         <div class="col-md-6">
             <label for="servico" class="label">Serviço para atendimento de id <%= request.getParameter("idficha") %> ao paciente <%= request.getParameter("nomeanimal") %> :</label>
@@ -91,7 +91,7 @@
         </div>
         
         <div class="col-md-6">
-            <button form="cadservico" type="submit" class="btn btn-primary" name="idficha" value="<?= $_GET['idficha'] ?>">Cadastrar Serviço</button>
+            <button form="cadservico" type="submit" class="btn btn-primary" name="idficha" value="<%= request.getParameter("idficha") %>">Cadastrar Serviço</button>
         </div>
                              
         

@@ -49,4 +49,14 @@
     <servlet-name>ServicoDeletaServlet</servlet-name>
     <url-pattern>/ServicoDeletaServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServicoCadastraServlet</display-name>
+    <servlet-name>ServicoCadastraServlet</servlet-name>
+    <servlet-class>br.com.veterinaria.model.view.ServicoCadastraServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServicoCadastraServlet</servlet-name>
+    <url-pattern>/ServicoCadastraServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
