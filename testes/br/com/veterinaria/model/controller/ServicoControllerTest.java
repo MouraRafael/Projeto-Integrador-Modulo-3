@@ -55,5 +55,17 @@ class ServicoControllerTest {
 		
 		assertEquals("sucesso",controller.excluir(s));
 	}
+	
+	@Test
+	void incluir() {
+		Servico s = new Servico();
+		
+		s.setIdFicha(2);
+		s.setIdServico(3);
+		
+		assertEquals("sucesso",controller.incluir(s));
+		
+		
+	}
 
 }

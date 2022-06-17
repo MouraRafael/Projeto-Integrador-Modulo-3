@@ -23,4 +23,9 @@ public class ServicoController {
 		
 		return dao.excluir(s);
 	}
+	
+	public String incluir (Servico s) {
+		ServicoDao dao = new ServicoDao();
+		return dao.incluir(s);
+	}
 }
