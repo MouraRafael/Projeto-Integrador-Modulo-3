@@ -111,7 +111,7 @@ if(nomeBusca == null){
                                             <td><%= f.getMotivoVisita() %></td>
                                             <td><%= f.getData() %></td>
                                             <td>
-                                            <a href=".form.edit.consulta.jsp?idFicha=<%= f.getIdFicha() %>&nomeanimal=<%= f.getAnimal().getNome() %>&Veterinario=<%= f.getVeterinario().getNome() %>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <a href="./form.edit.consulta.jsp?idFicha=<%= f.getIdFicha() %>&nomeanimal=<%= f.getAnimal().getNome() %>&Veterinario=<%= f.getVeterinario().getNome() %>"><i class="fa-solid fa-pen-to-square"></i></a>
                                                 
                                             </td>
                                         </tr>
