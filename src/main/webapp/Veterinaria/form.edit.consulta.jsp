@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="br.com.veterinaria.model.entidade.FichaAtendimento" %>
 <%@ page import="br.com.veterinaria.model.controller.FichaAtendimentoController" %>    
+<%@ page import ="br.com.veterinaria.model.entidade.Usuario" %>
     
     
     <!DOCTYPE html>
@@ -19,7 +20,20 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/33abab1032.js" crossorigin="anonymous"></script>
     </head>
-    
+    <%
+if(session.getAttribute("UsuarioLogado") == null){
+	
+	response.sendRedirect("../login.jsp");
+	
+}else if(session.getAttribute("UsuarioLogado") != null){
+	Usuario u = (Usuario) session.getAttribute("UsuarioLogado");
+
+	if(u.getIdCargo()!=3){
+		session.invalidate();
+		response.sendRedirect("../index.jsp");
+	}
+}
+%>
     <body id="body">
     <%
     long idFicha = Long.parseLong(request.getParameter("idFicha"));
@@ -66,7 +80,7 @@
             </ul>
 
             <form class="d-flex me-4">
-                <button class="btn btn-danger" formaction="./cadastro_sair.jsp" type="submit">Deslogar</button>
+                <button class="btn btn-danger" formaction="../UsuarioLogoffServlet" type="submit">Deslogar</button>
             </form>
         </div>
     </div>
