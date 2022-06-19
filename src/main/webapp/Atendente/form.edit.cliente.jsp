@@ -84,7 +84,7 @@ if(session.getAttribute("UsuarioLogado") == null){
                 </ul>
     
                 <form class="d-flex me-4">
-                    <button class="btn btn-danger" formaction="./cadastro_sair.jsp" type="submit">Deslogar</button>
+                    <button class="btn btn-danger" formaction="../UsuarioLogoffServlet" type="submit">Deslogar</button>
                 </form>
             </div>
         </div>
