@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@ page import="br.com.veterinaria.model.controller.DonoAnimalController" %>
 <%@ page import="br.com.veterinaria.model.entidade.DonoAnimal" %>
+<%@ page import ="br.com.veterinaria.model.entidade.Usuario" %>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -19,6 +21,20 @@
     </head>
     
     <body id="body">
+    <%
+if(session.getAttribute("UsuarioLogado") == null){
+	
+	response.sendRedirect("../login.jsp");
+	
+}else if(session.getAttribute("UsuarioLogado") != null){
+	Usuario u = (Usuario) session.getAttribute("UsuarioLogado");
+
+	if(u.getIdCargo()!=2){
+		session.invalidate();
+		response.sendRedirect("../index.jsp");
+	}
+}
+%>
     
    <%
    long idDono = Long.parseLong(request.getParameter("id_dono"));

@@ -3,6 +3,8 @@
     
 <%@ page import="br.com.veterinaria.model.controller.DonoAnimalController" %>
 <%@ page import="br.com.veterinaria.model.entidade.DonoAnimal" %>
+<%@ page import ="br.com.veterinaria.model.entidade.Usuario" %>
+
 
 <%@ page import="java.util.ArrayList" %>
 
@@ -24,6 +26,20 @@
 </head>
 
 <body id="body">
+<%
+if(session.getAttribute("UsuarioLogado") == null){
+	
+	response.sendRedirect("../login.jsp");
+	
+}else if(session.getAttribute("UsuarioLogado") != null){
+	Usuario u = (Usuario) session.getAttribute("UsuarioLogado");
+
+	if(u.getIdCargo()!=2){
+		session.invalidate();
+		response.sendRedirect("../index.jsp");
+	}
+}
+%>
 <%
 String nomeBusca = request.getParameter("buscar");
 
