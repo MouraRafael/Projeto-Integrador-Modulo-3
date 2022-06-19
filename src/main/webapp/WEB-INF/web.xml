@@ -89,4 +89,24 @@
     <servlet-name>DonoAnimalEditaServlet</servlet-name>
     <url-pattern>/DonoAnimalEditaServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UsuarioLoginServlet</display-name>
+    <servlet-name>UsuarioLoginServlet</servlet-name>
+    <servlet-class>br.com.veterinaria.model.view.UsuarioLoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UsuarioLoginServlet</servlet-name>
+    <url-pattern>/UsuarioLoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UsuarioLogoffServlet</display-name>
+    <servlet-name>UsuarioLogoffServlet</servlet-name>
+    <servlet-class>br.com.veterinaria.model.view.UsuarioLogoffServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UsuarioLogoffServlet</servlet-name>
+    <url-pattern>/UsuarioLogoffServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
