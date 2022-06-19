@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="br.com.veterinaria.model.entidade.FichaAtendimento" %>
 <%@ page import="br.com.veterinaria.model.controller.FichaAtendimentoController" %>    
+<%@ page import ="br.com.veterinaria.model.entidade.Usuario" %>
     
     
     <!DOCTYPE html>
@@ -22,6 +23,20 @@
     </head>
     
     <body id="body">
+    <%
+if(session.getAttribute("UsuarioLogado") == null){
+	
+	response.sendRedirect("../login.jsp");
+	
+}else if(session.getAttribute("UsuarioLogado") != null){
+	Usuario u = (Usuario) session.getAttribute("UsuarioLogado");
+
+	if(u.getIdCargo()!=3){
+		session.invalidate();
+		response.sendRedirect("../index.jsp");
+	}
+}
+%>
 <% 
 String nomeBusca = request.getParameter("buscar");
 
@@ -63,7 +78,7 @@ if(nomeBusca == null){
             </ul>
 
             <form class="d-flex me-4">
-                <button class="btn btn-danger" formaction="./cadastro_sair.jsp" type="submit">Deslogar</button>
+                <button class="btn btn-danger" formaction="../UsuarioLogoffServlet" type="submit">Deslogar</button>
             </form>
         </div>
     </div>
@@ -115,7 +130,7 @@ if(nomeBusca == null){
                                                 
                                             </td>
                                         </tr>
-                                   <% } %>>
+                                   <% } %>
             </tbody>
         </table>
     </div>

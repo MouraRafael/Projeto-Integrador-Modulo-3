@@ -5,6 +5,8 @@
 	<%@ page import="br.com.veterinaria.model.entidade.Raca" %>    
 	<%@ page import="br.com.veterinaria.model.controller.RacaController" %>  
 	<%@ page import="java.util.ArrayList" %>
+	<%@ page import ="br.com.veterinaria.model.entidade.Usuario" %>
+	
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -23,6 +25,20 @@
     </head>
     
     <body id="body">
+    <%
+if(session.getAttribute("UsuarioLogado") == null){
+	
+	response.sendRedirect("../login.jsp");
+	
+}else if(session.getAttribute("UsuarioLogado") != null){
+	Usuario u = (Usuario) session.getAttribute("UsuarioLogado");
+
+	if(u.getIdCargo()!=2){
+		session.invalidate();
+		response.sendRedirect("../index.jsp");
+	}
+}
+%>
     <%
     long idAnimal = Long.parseLong(request.getParameter("id"));
     long idEspecie = Long.parseLong(request.getParameter("id_especie"));
@@ -81,7 +97,7 @@
                 </ul>
     
                 <form class="d-flex me-4">
-                    <button class="btn btn-danger" formaction="./cadastro_sair.jsp" type="submit">Deslogar</button>
+                    <button class="btn btn-danger" formaction="../UsuarioLogoffServlet" type="submit">Deslogar</button>
                 </form>
             </div>
         </div>

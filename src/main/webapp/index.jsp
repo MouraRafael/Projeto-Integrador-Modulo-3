@@ -1,9 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import ="br.com.veterinaria.model.entidade.Usuario" %>
     <!DOCTYPE html>
     <html lang="pt-br">
     
     <head>
+    	<!-- Redirecionamento -->
+    	<%
+    	
+    	
+    	if(session.getAttribute("UsuarioLogado") == null){
+    		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+    		rd.forward(request, response);
+    	}
+    	
+    	Usuario u = (Usuario) session.getAttribute("UsuarioLogado");
+    	
+    	if(u.getIdCargo() == 1){
+    		response.sendRedirect("./admin/listar.consulta.jsp");
+    	}
+    	if(u.getIdCargo() == 2){
+    		response.sendRedirect("./Atendente/listar.consulta.jsp");
+    	}
+    	if(u.getIdCargo() == 3){
+    		response.sendRedirect("./Veterinaria/lista.consultas.jsp");
+    	}
+    	
+    	
+    	
+    	%>
+    	
+    
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Painel de Controle | Atendente</title>

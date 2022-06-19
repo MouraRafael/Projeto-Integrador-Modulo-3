@@ -30,13 +30,16 @@
 
                     <legend>Login - Clínica Veterinária</legend>
 
-                    <form class="register-form" action="../REDIRECT.php" method="post">
+                    <form class="register-form" action="UsuarioLoginServlet" method="post">
                         
 
                         <input type="text" name="email_txt" id="usuario_id" placeholder="Digite Seu Email" required>
                         <input  type="password" name="senha_txt" id="senha_id" placeholder="Informe sua Senha" required>
                         <button class="btn btn-dark" type="submit" name="botao_txt">Entrar</button>
                     </form>
+                    <% if (request.getAttribute("erro") != null){ %>
+    <p> <%= request.getAttribute("erro") %> </p>
+    <% } %>
                 </div>
                 </div>
             </div>              <!--FIM FORMULÁRIO DE CADASTRO-->
