@@ -38,7 +38,7 @@ if(session.getAttribute("UsuarioLogado") == null){
 
 
 <% 
-
+long contador = 0;
 
 
 
@@ -49,7 +49,8 @@ if(nomeBusca == null){
 	nomeBusca = "";
 }
 
-
+FichaAtendimentoController controller = new FichaAtendimentoController();
+ArrayList<FichaAtendimento> lista	= controller.listar(nomeBusca);
 
 %>
 
@@ -103,7 +104,7 @@ if(nomeBusca == null){
 <br>
 <div class="container80">
     <div class="conform">
-        <h2 id="title">Consultas</h2>
+        <h2 id="title"><%= lista.size()%> - Consultas  Encontradas</h2>
         <form action="listar.consulta.jsp" class="searchbar" method="get">
             <input type="text" class="search__input" name="buscar">
             <button type="submit" class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -124,11 +125,10 @@ if(nomeBusca == null){
             <tbody class="table-group-divider">
                     
                     <% 
-                    FichaAtendimentoController controller = new FichaAtendimentoController();
-                    ArrayList<FichaAtendimento> lista	= controller.listar(nomeBusca);
+                    
                     
                     for(FichaAtendimento f : lista){
-                    
+                    contador++;
                     %>
                     
                         <tr>
@@ -140,6 +140,8 @@ if(nomeBusca == null){
                                             <td><%= f.getMotivoVisita() %></td>
                                             <td><%= f.getData() %></td>
                                             <td>
+                                                    <%= contador %>
+                                            
                                                 <a href="./form.cadastro.servico.consulta.jsp?idficha=<%= f.getIdFicha() %>&nomeanimal=<%= f.getAnimal().getNome() %>"><i class="fa-solid fa-pen-to-square"></i></a>
                                             </td>
                                         </tr>
