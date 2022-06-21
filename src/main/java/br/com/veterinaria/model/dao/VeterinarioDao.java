@@ -95,4 +95,51 @@ public class VeterinarioDao extends Conexao{
 			
 		return lista;
 	}
+	
+	public ArrayList<Veterinario> listar(String nomeBusca){
+		ArrayList<Veterinario> lista = new ArrayList<Veterinario>();
+		
+		String sql = "SELECT "
+				+ "id_vet,"
+				+ " nome_vet, "
+				+ "telefone, "
+				+ "email "
+				+ "FROM veterinario "
+				+ "WHERE nome_vet LIKE ? "
+				+ "OR id_vet = ? "
+				+ "ORDER BY nome_vet";
+		
+		
+		try {
+			PreparedStatement ps = getConexao().prepareStatement(sql);
+			ps.setString(1, "%"+nomeBusca+"%");
+			ps.setString(2, nomeBusca);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			Veterinario v = null;
+			
+			while(rs.next()){
+				v = new Veterinario();
+				
+				v.setIdVet(rs.getLong(1));
+				v.setNome(rs.getString(2));
+				v.setTelefone(rs.getString(3));
+				v.setEmail(rs.getString(4));
+				
+				lista.add(v);
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			fecharConexao();
+		}
+		
+		
+		
+		return lista;
+	}
+	
+	
 }

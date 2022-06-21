@@ -14,7 +14,7 @@ class VeterinarioDaoTest {
 	VeterinarioDao dao = new VeterinarioDao();
 
 	@Test
-	//@Disabled
+	@Disabled
 	void cadastro() {
 		Veterinario v = new Veterinario();
 		
@@ -32,12 +32,24 @@ class VeterinarioDaoTest {
 	}
 	
 	@Test
+	@Disabled
 	void listaA() {
 		ArrayList<Veterinario> lista = new ArrayList<Veterinario>();
 		lista = dao.listarParaAtendimento();
 		
 		for(Veterinario v : lista) {
 			System.out.print("\n - Id: "+v.getIdVet()+" - Nome:"+v.getNome());
+		}
+	}
+	
+	
+	@Test
+	void listaB() {
+		ArrayList<Veterinario> lista = new ArrayList<Veterinario>();
+		lista = dao.listar("2");
+		
+		for(Veterinario v : lista) {
+			System.out.print("\n - Id: "+v.getIdVet()+" - Nome:"+v.getNome()+" - Telefone:"+v.getTelefone()+" - Email:"+v.getEmail());
 		}
 	}
 

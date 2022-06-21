@@ -109,4 +109,14 @@
     <servlet-name>UsuarioLogoffServlet</servlet-name>
     <url-pattern>/UsuarioLogoffServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>VeterinarioCadastroServlet</display-name>
+    <servlet-name>VeterinarioCadastroServlet</servlet-name>
+    <servlet-class>br.com.veterinaria.model.view.VeterinarioCadastroServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VeterinarioCadastroServlet</servlet-name>
+    <url-pattern>/VeterinarioCadastroServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

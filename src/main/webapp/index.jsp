@@ -17,7 +17,7 @@
     	Usuario u = (Usuario) session.getAttribute("UsuarioLogado");
     	
     	if(u.getIdCargo() == 1){
-    		response.sendRedirect("./admin/listar.consulta.jsp");
+    		response.sendRedirect("./admin/listar.veterinario.jsp");
     	}
     	if(u.getIdCargo() == 2){
     		response.sendRedirect("./Atendente/listar.consulta.jsp");
