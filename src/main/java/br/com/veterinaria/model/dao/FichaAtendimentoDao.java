@@ -60,13 +60,15 @@ public class FichaAtendimentoDao extends Conexao {
 				+ "FROM tudo_ficha  "
 				+ "WHERE nome_animal LIKE ?  "
 				+ "OR nome_dono LIKE ? "
-				+ "OR id_ficha = ?";
+				+ "OR id_ficha = ? "
+				+ "OR data_visita LIKE ?";
 
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
 			ps.setString(1, "%"+nomeBusca+"%");
 			ps.setString(2, "%"+nomeBusca+"%");
 			ps.setString(3, nomeBusca);
+			ps.setString(4, nomeBusca+"%");
 
 			ResultSet rs = ps.executeQuery();
 
