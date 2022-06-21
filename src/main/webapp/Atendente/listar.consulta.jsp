@@ -38,7 +38,7 @@ if(session.getAttribute("UsuarioLogado") == null){
 
 
 <% 
-long contador = 0;
+
 
 
 
@@ -128,7 +128,7 @@ ArrayList<FichaAtendimento> lista	= controller.listar(nomeBusca);
                     
                     
                     for(FichaAtendimento f : lista){
-                    contador++;
+                    
                     %>
                     
                         <tr>
