@@ -31,6 +31,13 @@ public class FichaAtendimentoController {
 		return dao.alterar(f);
 	}
 	
+	public ArrayList<FichaAtendimento> listarSeparada (String nomeBusca, String tipo){
+		FichaAtendimentoDao dao = new FichaAtendimentoDao();
+		
+		return dao.listarSeparada(nomeBusca, tipo);
+		
+	}
+	
 	
 	
 	
