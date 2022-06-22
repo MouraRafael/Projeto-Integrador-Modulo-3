@@ -52,14 +52,11 @@ if(session.getAttribute("UsuarioLogado") == null){
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         
                         <li class="nav-item ms-3">
-                            <a class="nav-link active text-black" aria-current="page" href="./listar.cliente.jsp"><i
-                                class="fa-solid fa-user-pen"></i>Clientes</a>
+                            <a class="nav-link active text-black" aria-current="page" href="./listar.veterinario.jsp"><i
+                                class="fa-solid fa-user-pen"></i>Veterinarios</a>
                         </li>
         
-                        <li class="nav-item ms-3">
-                            <a class="nav-link active text-black" aria-current="page" href="./listar.animal.jsp"><i
-                                class="fa-solid fa-paw"></i>Animais</a>
-                        </li>
+                        
         
                         <li class="nav-item ms-3">
                             <a class="nav-link active text-black" aria-current="page" href="./listar.consulta.jsp"><i

@@ -59,7 +59,7 @@ if(nomeBusca == null){
         <a class="navbar-brand" href="../index.jsp"><img src="../assets/img/logo/petmania-black-153.png" alt="..." height="100px"></a>
 
         <form class="d-flex ms-5">
-            <button class="btn btn-success" formaction="./listar.cliente.jsp">Atendente</button>
+            <button class="btn btn-success" formaction="./listar.veterinario.jsp">Veterinarios</button>
         </form>
 
         <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,14 +70,10 @@ if(nomeBusca == null){
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                 <li class="nav-item ms-3">
-                    <a class="nav-link active text-black" aria-current="page" href="./listar.cliente.jsp"><i
-                        class="fa-solid fa-user-pen"></i>Clientes</a>
+                    <a class="nav-link active text-black" aria-current="page" href="./listar.veterinario.jsp"><i
+                        class="fa-solid fa-user-pen"></i>Veterinarios</a>
                 </li>
 
-                <li class="nav-item ms-3">
-                    <a class="nav-link active text-black" aria-current="page" href="./listar.animal.jsp"><i
-                        class="fa-solid fa-paw"></i>Animais</a>
-                </li>
 
                 <li class="nav-item ms-3">
                     <a class="nav-link active text-black" aria-current="page" href="./listar.consulta.jsp"><i
