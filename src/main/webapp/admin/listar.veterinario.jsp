@@ -59,7 +59,7 @@ if(nomeBusca == null){
         <a class="navbar-brand" href="../index.jsp"><img src="../assets/img/logo/petmania-black-153.png" alt="..." height="100px"></a>
 
         <form class="d-flex ms-5">
-            <button class="btn btn-success" formaction="./listar.veterinario.jsp">Veterinarios</button>
+            <button class="btn btn-success" formaction="./listar.veterinario.jsp">Gerente</button>
         </form>
 
         <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,7 +96,7 @@ if(nomeBusca == null){
 <br>
 <div class="container80">
     <div class="conform">
-        <h2 id="title">Clientes</h2>
+        <h2 id="title">Lista de Veterinarios</h2>
         <a href="./form.cadastro.veterinario.jsp" class="btn__lista cliente">Cadastrar Veterinario</a>
         <form action="listar.veterinario.jsp" class="searchbar" method="get">
             <input type="text" class="search__input" name="buscar">
@@ -109,7 +109,7 @@ if(nomeBusca == null){
                     <th scope="col">Nome</th>
                     <th scope="col">Telefone</th>
                     <th scope="col">Email</th>
-                    <th><i class="fa-solid fa-plus"></i></th>
+                   <!--  <th><i class="fa-solid fa-plus"></i></th>--> 
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -125,11 +125,11 @@ if(nomeBusca == null){
                                             <td><%= d.getTelefone() %></td>
                                             <td><%= d.getEmail() %></td>
 
-                                            <td>
-                                                <a href="./form.cadastro.animal.jsp?idEspecie=1&idDono=<%= d.getIdVet() %>"><i class="fa-solid fa-file-pen"></i></a>
+                                            <!-- <td>
                                                 
-                                                <a href="./form.edit.cliente.jsp?id_dono=<%= d.getIdVet() %>"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            </td>
+                                                
+                                                <a href="./form.edit.veterinario.jsp?idvet=<%= d.getIdVet() %>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            </td>--> 
                     </tr>
                 <% }
 
