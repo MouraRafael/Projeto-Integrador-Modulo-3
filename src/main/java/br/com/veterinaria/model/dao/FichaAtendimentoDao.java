@@ -60,13 +60,15 @@ public class FichaAtendimentoDao extends Conexao {
 				+ "FROM tudo_ficha  "
 				+ "WHERE nome_animal LIKE ?  "
 				+ "OR nome_dono LIKE ? "
-				+ "OR id_ficha = ?";
+				+ "OR id_ficha = ? "
+				+ "OR data_visita LIKE ?";
 
 		try {
 			PreparedStatement ps = getConexao().prepareStatement(sql);
 			ps.setString(1, "%"+nomeBusca+"%");
 			ps.setString(2, "%"+nomeBusca+"%");
 			ps.setString(3, nomeBusca);
+			ps.setString(4, nomeBusca+"%");
 
 			ResultSet rs = ps.executeQuery();
 
@@ -202,5 +204,220 @@ public class FichaAtendimentoDao extends Conexao {
 
 		return mensagem;
 
+	}
+	
+	
+	
+	
+	
+	// Extras  de funcao generica
+	
+	
+	public ArrayList<FichaAtendimento> listarSeparada (String nomeBusca, String tipo){
+		ArrayList<FichaAtendimento> lista = new ArrayList<FichaAtendimento>();
+		String sql = "";
+		if(tipo == null) {
+			sql = "SELECT DISTINCT "
+				+ "id_ficha, "
+				+ "data_visita, "
+				+ "especie, "
+				+ "nome_animal, "
+				+ "Veterinario, "
+				+ "nome_dono, "
+				+ "motivo_visita "
+				+ "FROM tudo_ficha  "
+				+ "WHERE nome_animal LIKE ?  "
+				+ "OR nome_dono LIKE ? "
+				+ "OR id_ficha = ? "
+				+ "OR data_visita LIKE ?";
+			
+			
+			try {
+				PreparedStatement ps = getConexao().prepareStatement(sql);
+				ps.setString(1, "%"+nomeBusca+"%");
+				ps.setString(2, "%"+nomeBusca+"%");
+				ps.setString(3, nomeBusca);
+				ps.setString(4, nomeBusca+"%");
+
+				ResultSet rs = ps.executeQuery();
+
+				FichaAtendimento f = null;
+				Veterinario v = null;
+				Animal a = null;
+				Raca r = null;
+				DonoAnimal d = null;
+
+				while(rs.next()){
+					r = new Raca();
+					a = new Animal();
+					d = new DonoAnimal();
+					v = new Veterinario();
+					f = new FichaAtendimento();
+					
+					f.setIdFicha(rs.getLong("id_ficha"));
+					f.setData(rs.getDate("data_visita"));
+					
+					r.setNomeEspecie(rs.getString("especie"));
+					a.setNome(rs.getString("nome_animal"));
+					a.setRaca(r);
+					f.setAnimal(a);
+					
+					v.setNome(rs.getString("Veterinario"));
+					f.setVeterinario(v);
+
+					d.setNome(rs.getString("nome_dono"));
+					f.setDono(d);
+					
+					f.setMotivoVisita(rs.getString("motivo_visita"));
+					
+
+					lista.add(f);
+
+					
+
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally{
+				fecharConexao();
+			}
+		}else{
+			if(tipo.equals("1")) {
+					sql = "SELECT DISTINCT "
+							+ "id_ficha, "
+							+ "data_visita, "
+							+ "especie, "
+							+ "nome_animal, "
+							+ "Veterinario, "
+							+ "nome_dono, "
+							+ "motivo_visita "
+							+ "FROM tudo_ficha  "
+							+ "WHERE nome_animal LIKE ? "
+							+ "OR id_animal = ? ";
+				
+					try {
+						PreparedStatement ps = getConexao().prepareStatement(sql);
+						ps.setString(1, "%"+nomeBusca+"%");
+						ps.setString(2, nomeBusca);
+	
+						ResultSet rs = ps.executeQuery();
+	
+						FichaAtendimento f = null;
+						Veterinario v = null;
+						Animal a = null;
+						Raca r = null;
+						DonoAnimal d = null;
+	
+						while(rs.next()){
+							r = new Raca();
+							a = new Animal();
+							d = new DonoAnimal();
+							v = new Veterinario();
+							f = new FichaAtendimento();
+							
+							f.setIdFicha(rs.getLong("id_ficha"));
+							f.setData(rs.getDate("data_visita"));
+							
+							r.setNomeEspecie(rs.getString("especie"));
+							a.setNome(rs.getString("nome_animal"));
+							a.setRaca(r);
+							f.setAnimal(a);
+							
+							v.setNome(rs.getString("Veterinario"));
+							f.setVeterinario(v);
+	
+							d.setNome(rs.getString("nome_dono"));
+							f.setDono(d);
+							
+							f.setMotivoVisita(rs.getString("motivo_visita"));
+							
+	
+							lista.add(f);
+	
+							
+	
+						}
+						
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}finally{
+						fecharConexao();
+				}
+			
+			}
+					if(tipo.equals("2")) {
+						sql = "SELECT DISTINCT "
+								+ "id_ficha, "
+								+ "data_visita, "
+								+ "especie, "
+								+ "nome_animal, "
+								+ "Veterinario, "
+								+ "nome_dono, "
+								+ "motivo_visita "
+								+ "FROM tudo_ficha  "
+								+ "WHERE nome_dono LIKE ? "
+								+ "OR id_dono = ?";
+					
+						try {
+							PreparedStatement ps = getConexao().prepareStatement(sql);
+							ps.setString(1, "%"+nomeBusca+"%");
+							ps.setString(2, nomeBusca);
+							
+		
+							ResultSet rs = ps.executeQuery();
+		
+							FichaAtendimento f = null;
+							Veterinario v = null;
+							Animal a = null;
+							Raca r = null;
+							DonoAnimal d = null;
+		
+							while(rs.next()){
+								r = new Raca();
+								a = new Animal();
+								d = new DonoAnimal();
+								v = new Veterinario();
+								f = new FichaAtendimento();
+								
+								f.setIdFicha(rs.getLong("id_ficha"));
+								f.setData(rs.getDate("data_visita"));
+								
+								r.setNomeEspecie(rs.getString("especie"));
+								a.setNome(rs.getString("nome_animal"));
+								a.setRaca(r);
+								f.setAnimal(a);
+								
+								v.setNome(rs.getString("Veterinario"));
+								f.setVeterinario(v);
+		
+								d.setNome(rs.getString("nome_dono"));
+								f.setDono(d);
+								
+								f.setMotivoVisita(rs.getString("motivo_visita"));
+								
+		
+								lista.add(f);
+		
+								
+		
+							}
+							
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}finally{
+							fecharConexao();
+					}
+				
+				}
+			
+			
+			
+			
+		}
+
+		
+
+		return lista;
 	}
 }

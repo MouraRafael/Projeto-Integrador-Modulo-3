@@ -17,6 +17,11 @@ public class VeterinarioController {
 			
 			return dao.listarParaAtendimento();
 		}
+		public ArrayList<Veterinario> listar(String nomeBusca){
+			VeterinarioDao dao = new VeterinarioDao();
+			
+			return dao.listar(nomeBusca);
+		}
 }
 
 

@@ -31,6 +31,7 @@ class VeterinarioControllerTest {
 	}
 	
 	@Test
+	@Disabled
 	void listaA() {
 		ArrayList<Veterinario> lista = new ArrayList<Veterinario>();
 		lista = controller.listarAtendimento();
@@ -39,5 +40,14 @@ class VeterinarioControllerTest {
 			System.out.print("\n - Id: "+v.getIdVet()+" - Nome:"+v.getNome());
 		}
 
-}
+	}
+	@Test
+	void listaB() {
+		ArrayList<Veterinario> lista = new ArrayList<Veterinario>();
+		lista = controller.listar("");
+		
+		for(Veterinario v : lista) {
+			System.out.print("\n - Id: "+v.getIdVet()+" - Nome:"+v.getNome()+" - Telefone:"+v.getTelefone()+" - Email:"+v.getEmail());
+		}
+	}
 }

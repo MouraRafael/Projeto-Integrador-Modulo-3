@@ -47,7 +47,7 @@ class DonoAnimalControllerTest {
 	}
 	
 	@Test
-	@Disabled
+	//@Disabled
 	@DisplayName("Controller Cadastro")
 	void testeCadastro() {
 		DonoAnimal d = new DonoAnimal();
@@ -57,8 +57,8 @@ class DonoAnimalControllerTest {
 		d.setLogradouro("15");
 		d.setNumero(123);
 		d.setCep(20890090);
-		d.setCpf("987654321");
-		d.setNome("Joaquim");
+		d.setCpf("9876543210");
+		d.setNome("Mariano");
 		d.setEmail("joaquin@gmail");
 		d.setTelefone("(22) 2256-6261");
 		

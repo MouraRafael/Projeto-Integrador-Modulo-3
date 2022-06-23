@@ -47,7 +47,7 @@ class ServicoDaoTest {
 	}
 	
 	@Test
-	//@Disabled
+	@Disabled
 	void excluirServico() {
 		Servico s = new Servico();
 		
@@ -56,6 +56,19 @@ class ServicoDaoTest {
 		
 		
 		assertEquals("sucesso",dao.excluir(s));
+	}
+	
+	
+	@Test
+	void incluir() {
+		Servico s = new Servico();
+		
+		s.setIdFicha(1);
+		s.setIdServico(2);
+		
+		assertEquals("sucesso",dao.incluir(s));
+		
+		
 	}
 
 }
