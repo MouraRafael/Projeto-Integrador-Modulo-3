@@ -20,17 +20,17 @@
 
 
 <!-- INICIO MEIO DO SITE -->
-<section class="backgroundcontainer">
-        <div class="background">
+<section class="backgroundcontainerz">
+        <div class="backgroundz">
 
-            <div class="caixamae">
-                <div class="login-page">
-                <div class="form">
+            <div class="caixamaez">
+                <div class="login-pagez">
+                <div class="formz">
 
 
                     <legend>Login - Clínica Veterinária</legend>
 
-                    <form class="register-form" action="UsuarioLoginServlet" method="post">
+                    <form class="register-formz" action="UsuarioLoginServlet" method="post">
                         
 
                         <input type="text" name="email_txt" id="usuario_id" placeholder="Digite Seu Email" required>
