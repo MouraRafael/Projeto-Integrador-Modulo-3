@@ -67,7 +67,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>DonoAnimalCadastroServlet</servlet-name>
-    <url-pattern>/DonoAnimalCadastroServlet</url-pattern>
+    <url-pattern>/Atendente/DonoAnimalCadastroServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

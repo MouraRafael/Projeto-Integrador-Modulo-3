@@ -86,7 +86,7 @@ public class DonoAnimalCadastroServlet extends HttpServlet {
 		
 		
 		//pagina encaminhada
-		RequestDispatcher rd = request.getRequestDispatcher("./Atendente/listar.cliente.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("./listar.cliente.jsp");
 		rd.forward(request, response);
 		
 		//doGet(request, response);
